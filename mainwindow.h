@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "uart/settingsdialog.h"
+
 
 namespace Ui {
 class MainWindow;
@@ -17,6 +19,8 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    SettingsDialog *uart_fpga_setting;
+
 };
 
 #endif // MAINWINDOW_H
