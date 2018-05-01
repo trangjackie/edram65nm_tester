@@ -26,11 +26,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    uart/settingsdialog.cpp
+    uart/settingsdialog.cpp \
+    dut_data.cpp
 
 HEADERS += \
         mainwindow.h \
-    uart/settingsdialog.h
+    uart/settingsdialog.h \
+    dut_data.h
 
 FORMS += \
         mainwindow.ui \
