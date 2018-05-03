@@ -25,7 +25,17 @@ void dut_data::data_classify()
     } else if (raw_data->at(0) == 't') {
         iTID[0] = raw_data->mid(4,1).toInt();
         iTID[1] = raw_data->mid(8,5).toInt();
-
+        iTID[2] = raw_data->mid(12,9).toInt();
+        iTID[3] = raw_data->mid(16,13).toInt();
+        iTID[4] = raw_data->mid(20,17).toInt();
+        iTID[5] = raw_data->mid(24,21).toInt();
+        iTID[6] = raw_data->mid(28,25).toInt();
+        iTID[7] = raw_data->mid(32,29).toInt();
+        iTID[8] = raw_data->mid(36,33).toInt();
+        iTID[9] = raw_data->mid(40,37).toInt();
+        iTID[10] = raw_data->mid(44,41).toInt();
+        iTID[11] = raw_data->mid(48,45).toInt();
+        qDebug((raw_data->toHex()));
     } else  {
         sram_data->append(raw_data->mid(raw_data->length()-1,0));
         data_avarible = true;

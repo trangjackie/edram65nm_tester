@@ -452,6 +452,9 @@
         <property name="text">
          <string>6T_1b</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup_2</string>
+        </attribute>
        </widget>
       </item>
       <item row="0" column="4">
@@ -482,6 +485,9 @@
         <property name="text">
          <string>weQ_11</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup_2</string>
+        </attribute>
        </widget>
       </item>
       <item row="1" column="4">
@@ -497,6 +503,9 @@
         <property name="text">
          <string>weQ_14</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup_2</string>
+        </attribute>
        </widget>
       </item>
       <item row="4" column="7">
@@ -512,6 +521,9 @@
         <property name="text">
          <string>6T_1</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup_2</string>
+        </attribute>
        </widget>
       </item>
       <item row="3" column="5">
@@ -553,6 +565,9 @@
         <property name="text">
          <string>weQ_10</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup_2</string>
+        </attribute>
        </widget>
       </item>
       <item row="2" column="4">
@@ -568,6 +583,9 @@
         <property name="text">
          <string>weQ_12</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup_2</string>
+        </attribute>
        </widget>
       </item>
       <item row="1" column="1">
@@ -583,6 +601,9 @@
         <property name="text">
          <string>weQ_15</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup_2</string>
+        </attribute>
        </widget>
       </item>
       <item row="2" column="1">
@@ -598,6 +619,9 @@
         <property name="text">
          <string>weQ_13</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup_2</string>
+        </attribute>
        </widget>
       </item>
       <item row="5" column="1">
@@ -613,6 +637,9 @@
         <property name="text">
          <string>weQ_7</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup_2</string>
+        </attribute>
        </widget>
       </item>
       <item row="6" column="1">
@@ -628,6 +655,9 @@
         <property name="text">
          <string>weQ_5</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup_2</string>
+        </attribute>
        </widget>
       </item>
       <item row="3" column="8">
@@ -669,6 +699,9 @@
         <property name="text">
          <string>weQ_4</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup_2</string>
+        </attribute>
        </widget>
       </item>
       <item row="1" column="3">
@@ -710,6 +743,9 @@
         <property name="text">
          <string>6T_3</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup_2</string>
+        </attribute>
        </widget>
       </item>
       <item row="3" column="7">
@@ -725,6 +761,9 @@
         <property name="text">
          <string>6T_2</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup_2</string>
+        </attribute>
        </widget>
       </item>
       <item row="2" column="8">
@@ -769,6 +808,9 @@
         <property name="checked">
          <bool>true</bool>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup_2</string>
+        </attribute>
        </widget>
       </item>
       <item row="5" column="4">
@@ -784,6 +826,9 @@
         <property name="text">
          <string>Q10T_6</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup_2</string>
+        </attribute>
        </widget>
       </item>
       <item row="2" column="5">
@@ -903,6 +948,9 @@
         <property name="text">
          <string>Q10T_8</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup_2</string>
+        </attribute>
        </widget>
       </item>
       <item row="2" column="2">
@@ -1100,6 +1148,9 @@
         <property name="text">
          <string>weQ_9</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup_2</string>
+        </attribute>
        </widget>
       </item>
       <item row="1" column="6">
@@ -1741,10 +1792,13 @@
         <property name="text">
          <string>TID rc mom 2x</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup</string>
+        </attribute>
        </widget>
       </item>
       <item row="3" column="3">
-       <widget class="QLabel" name="label_23">
+       <widget class="QLabel" name="label_f_TID_7">
         <property name="font">
          <font>
           <weight>75</weight>
@@ -1757,7 +1811,7 @@
        </widget>
       </item>
       <item row="2" column="3">
-       <widget class="QLabel" name="label_22">
+       <widget class="QLabel" name="label_f_TID_6">
         <property name="font">
          <font>
           <weight>75</weight>
@@ -1780,6 +1834,9 @@
         <property name="text">
          <string>TID inv l 1p4n</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup</string>
+        </attribute>
        </widget>
       </item>
       <item row="2" column="0">
@@ -1793,6 +1850,9 @@
         <property name="text">
          <string>TID inv s 1p4n</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup</string>
+        </attribute>
        </widget>
       </item>
       <item row="0" column="0">
@@ -1809,6 +1869,9 @@
         <property name="checked">
          <bool>true</bool>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup</string>
+        </attribute>
        </widget>
       </item>
       <item row="1" column="0">
@@ -1822,6 +1885,9 @@
         <property name="text">
          <string>TID inv s 4p1n</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup</string>
+        </attribute>
        </widget>
       </item>
       <item row="0" column="2">
@@ -1835,6 +1901,9 @@
         <property name="text">
          <string>TID inv l 4p1n</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup</string>
+        </attribute>
        </widget>
       </item>
       <item row="0" column="4">
@@ -1848,6 +1917,9 @@
         <property name="text">
          <string>TID rc mom f</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup</string>
+        </attribute>
        </widget>
       </item>
       <item row="2" column="2">
@@ -1861,6 +1933,9 @@
         <property name="text">
          <string>TID rc mim s 6</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup</string>
+        </attribute>
        </widget>
       </item>
       <item row="2" column="4">
@@ -1874,6 +1949,9 @@
         <property name="text">
          <string>TID rc mim s 10</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup</string>
+        </attribute>
        </widget>
       </item>
       <item row="3" column="4">
@@ -1887,6 +1965,9 @@
         <property name="text">
          <string>TID rc mim s 11</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup</string>
+        </attribute>
        </widget>
       </item>
       <item row="3" column="0">
@@ -1900,6 +1981,9 @@
         <property name="text">
          <string>TID inv l 1p1n</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup</string>
+        </attribute>
        </widget>
       </item>
       <item row="3" column="2">
@@ -1913,10 +1997,13 @@
         <property name="text">
          <string>TID rc mim f</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">buttonGroup</string>
+        </attribute>
        </widget>
       </item>
       <item row="0" column="3">
-       <widget class="QLabel" name="label_20">
+       <widget class="QLabel" name="label_f_TID_4">
         <property name="font">
          <font>
           <weight>75</weight>
@@ -1968,7 +2055,7 @@
        </widget>
       </item>
       <item row="1" column="3">
-       <widget class="QLabel" name="label_21">
+       <widget class="QLabel" name="label_f_TID_5">
         <property name="font">
          <font>
           <weight>75</weight>
@@ -1994,7 +2081,7 @@
        </widget>
       </item>
       <item row="0" column="5">
-       <widget class="QLabel" name="label_24">
+       <widget class="QLabel" name="label_f_TID_8">
         <property name="font">
          <font>
           <weight>75</weight>
@@ -2007,7 +2094,7 @@
        </widget>
       </item>
       <item row="1" column="5">
-       <widget class="QLabel" name="label_25">
+       <widget class="QLabel" name="label_f_TID_9">
         <property name="font">
          <font>
           <weight>75</weight>
@@ -2020,7 +2107,7 @@
        </widget>
       </item>
       <item row="2" column="5">
-       <widget class="QLabel" name="label_26">
+       <widget class="QLabel" name="label_f_TID_10">
         <property name="font">
          <font>
           <weight>75</weight>
@@ -2033,7 +2120,7 @@
        </widget>
       </item>
       <item row="3" column="5">
-       <widget class="QLabel" name="label_27">
+       <widget class="QLabel" name="label_f_TID_11">
         <property name="font">
          <font>
           <weight>75</weight>
@@ -2177,4 +2264,8 @@
   <include location="icons/icons.qrc"/>
  </resources>
  <connections/>
+ <buttongroups>
+  <buttongroup name="buttonGroup"/>
+  <buttongroup name="buttonGroup_2"/>
+ </buttongroups>
 </ui>

@@ -158,7 +158,7 @@ void MainWindow::uart_fpga_readData()
 {
     raw_data->raw_data->clear();
     raw_data->raw_data->append(uart_fpga->readAll());
-    qDebug("data come 0");
+    //qDebug("data come 0");
     while (uart_fpga->waitForReadyRead(50)){
             //qDebug("data come 1");
             raw_data->raw_data->append(uart_fpga->readAll());
@@ -180,6 +180,16 @@ void MainWindow::uart_fpga_readData()
     // update TID if have
     ui->label_f_TID_0->setText(QString::number(raw_data->iTID[0]));
     ui->label_f_TID_1->setText(QString::number(raw_data->iTID[1]));
+    ui->label_f_TID_2->setText(QString::number(raw_data->iTID[2]));
+    ui->label_f_TID_3->setText(QString::number(raw_data->iTID[3]));
+    ui->label_f_TID_4->setText(QString::number(raw_data->iTID[4]));
+    ui->label_f_TID_5->setText(QString::number(raw_data->iTID[5]));
+    ui->label_f_TID_6->setText(QString::number(raw_data->iTID[6]));
+    ui->label_f_TID_7->setText(QString::number(raw_data->iTID[7]));
+    ui->label_f_TID_8->setText(QString::number(raw_data->iTID[8]));
+    ui->label_f_TID_9->setText(QString::number(raw_data->iTID[9]));
+    ui->label_f_TID_10->setText(QString::number(raw_data->iTID[10]));
+    ui->label_f_TID_11->setText(QString::number(raw_data->iTID[11]));
 
     if (raw_data->data_avarible)
     {
