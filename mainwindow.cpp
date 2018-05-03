@@ -160,7 +160,7 @@ void MainWindow::uart_fpga_readData()
     raw_data->raw_data->append(uart_fpga->readAll());
     qDebug("data come 0");
     while (uart_fpga->waitForReadyRead(50)){
-            qDebug("data come 1");
+            //qDebug("data come 1");
             raw_data->raw_data->append(uart_fpga->readAll());
     }
 
@@ -177,6 +177,9 @@ void MainWindow::uart_fpga_readData()
 
     // classify data after read
     raw_data->data_classify();
+    // update TID if have
+    ui->label_f_TID_0->setText(QString::number(raw_data->iTID[0]));
+    ui->label_f_TID_1->setText(QString::number(raw_data->iTID[1]));
 
     if (raw_data->data_avarible)
     {

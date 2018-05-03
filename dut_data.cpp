@@ -16,18 +16,23 @@ dut_data::~dut_data()
 void dut_data::data_classify()
 {
     sram_data->clear();
-/*    if (raw_data->at(0) == 'R') {
+    if (raw_data->at(0) == 'R') {
         sram_data->append(raw_data->mid(raw_data->length()-1,1));
         data_avarible = true;
     } else if (raw_data->at(0) == 'W') {
         sram_data->append(raw_data->mid(raw_data->length()-1,2));
         data_avarible = true;
     } else if (raw_data->at(0) == 't') {
+        iTID[0] = raw_data->mid(4,1).toInt();
+        iTID[1] = raw_data->mid(8,5).toInt();
 
+    } else  {
+        sram_data->append(raw_data->mid(raw_data->length()-1,0));
+        data_avarible = true;
     }
-    */
-    sram_data = raw_data;
-    data_avarible = true;
+
+    //sram_data = raw_data;
+    //data_avarible = true;
 }
 
 void dut_data::convert_data_to_image(QImage* img)
