@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include "uart/settingsdialog.h"
 #include "dut_data.h"
+#include <QTimer>
 
 
 namespace Ui {
@@ -18,6 +19,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+
 
 private slots:
     void on_pushButton_app_close_clicked();
@@ -46,6 +49,8 @@ private slots:
 
     void block_select_handle();
 
+    void tid_check();
+
 private:
     Ui::MainWindow *ui;
     SettingsDialog *uart_fpga_setting;
@@ -54,8 +59,13 @@ private:
     dut_data *raw_data;
     int flag_data_pattern;
 
+    QTimer *timer_tid;
+
     void uart_fpga_writeData(const QByteArray &data);
     void radiobutton_block_select_setup();
+
+    void write_report(QString str_data);
+    QString get_time_string();
 
 };
 

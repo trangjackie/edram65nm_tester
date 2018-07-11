@@ -1,5 +1,10 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QFile>
+#include <QFileInfo>
+#include <QTextStream>
+#include <QDateTime>
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -15,6 +20,9 @@ MainWindow::MainWindow(QWidget *parent) :
             SLOT(uart_fpga_handleError(QSerialPort::SerialPortError)));
     connect(uart_fpga, SIGNAL(readyRead()), this, SLOT(uart_fpga_readData()));
 
+    // Timer for TID auto test
+        timer_tid = new QTimer();
+        connect(timer_tid, SIGNAL(timeout()), this, SLOT(tid_check()));
     // DUT data
     raw_data = new dut_data;
     radiobutton_block_select_setup();
@@ -156,6 +164,7 @@ void MainWindow::on_pushButton_uart_fpga_connect_clicked()
 
 void MainWindow::uart_fpga_readData()
 {
+    int type_data;
     raw_data->raw_data->clear();
     raw_data->raw_data->append(uart_fpga->readAll());
     //qDebug("data come 0");
@@ -176,29 +185,45 @@ void MainWindow::uart_fpga_readData()
     ui->plainTextEdit_console->insertPlainText(QString(*raw_data->raw_data));
 
     // classify data after read
-    raw_data->data_classify();
-    // update TID if have
-    ui->label_f_TID_0->setText(QString::number(raw_data->iTID[0]));
-    ui->label_f_TID_1->setText(QString::number(raw_data->iTID[1]));
-    ui->label_f_TID_2->setText(QString::number(raw_data->iTID[2]));
-    ui->label_f_TID_3->setText(QString::number(raw_data->iTID[3]));
-    ui->label_f_TID_4->setText(QString::number(raw_data->iTID[4]));
-    ui->label_f_TID_5->setText(QString::number(raw_data->iTID[5]));
-    ui->label_f_TID_6->setText(QString::number(raw_data->iTID[6]));
-    ui->label_f_TID_7->setText(QString::number(raw_data->iTID[7]));
-    ui->label_f_TID_8->setText(QString::number(raw_data->iTID[8]));
-    ui->label_f_TID_9->setText(QString::number(raw_data->iTID[9]));
-    ui->label_f_TID_10->setText(QString::number(raw_data->iTID[10]));
-    ui->label_f_TID_11->setText(QString::number(raw_data->iTID[11]));
+    type_data = raw_data->data_classify();
+    if (type_data == 3){
+        // update TID if have
+        ui->label_f_TID_0->setText(QString::number(raw_data->iTID[0]));
+        ui->label_f_TID_1->setText(QString::number(raw_data->iTID[1]));
+        ui->label_f_TID_2->setText(QString::number(raw_data->iTID[2]));
+        ui->label_f_TID_3->setText(QString::number(raw_data->iTID[3]));
+        ui->label_f_TID_4->setText(QString::number(raw_data->iTID[4]));
+        ui->label_f_TID_5->setText(QString::number(raw_data->iTID[5]));
+        ui->label_f_TID_6->setText(QString::number(raw_data->iTID[6]));
+        ui->label_f_TID_7->setText(QString::number(raw_data->iTID[7]));
+        ui->label_f_TID_8->setText(QString::number(raw_data->iTID[8]));
+        ui->label_f_TID_9->setText(QString::number(raw_data->iTID[9]));
+        ui->label_f_TID_10->setText(QString::number(raw_data->iTID[10]));
+        ui->label_f_TID_11->setText(QString::number(raw_data->iTID[11]));
 
-    if (raw_data->data_avarible)
-    {
-        QImage img(128, 256, QImage::Format_RGB888);
-        img.fill(QColor(Qt::white).rgb());
-        raw_data->convert_data_to_image(&img);
-        ui->label_bitmap->setPixmap(QPixmap::fromImage(img));
+        write_report("TID "+QString::number(raw_data->iTID[0])+
+                " "+QString::number(raw_data->iTID[1])+
+                " "+QString::number(raw_data->iTID[2])+
+                " "+QString::number(raw_data->iTID[3])+
+                " "+QString::number(raw_data->iTID[4])+
+                " "+QString::number(raw_data->iTID[5])+
+                " "+QString::number(raw_data->iTID[6])+
+                " "+QString::number(raw_data->iTID[7])+
+                " "+QString::number(raw_data->iTID[8])+
+                " "+QString::number(raw_data->iTID[9])+
+                " "+QString::number(raw_data->iTID[10])+
+                " "+QString::number(raw_data->iTID[11]));
+
     }
-
+    if (type_data == 1){
+        if (raw_data->data_avarible)
+        {
+            QImage img(128, 256, QImage::Format_RGB888);
+            img.fill(QColor(Qt::white).rgb());
+            raw_data->convert_data_to_image(&img);
+            ui->label_bitmap->setPixmap(QPixmap::fromImage(img));
+        }
+    }
 }
 
 void MainWindow::uart_fpga_writeData(const QByteArray &data)
@@ -222,10 +247,40 @@ void MainWindow::on_pushButton_DUT_SRAM_Read_clicked()
 
 void MainWindow::on_pushButton_TID_check_clicked()
 {
+    if (ui->lineEdit_timer->text().isEmpty()){
+        tid_check();
+    } else {
+    if (timer_tid->isActive())
+        {
+            timer_tid->stop();
+        }
+        else
+        {
+            // get timer time set
+            int t;
+            bool bOk;
+            t= ui->lineEdit_timer->text().toInt(&bOk);
+            if (!bOk|(t<10))
+            {
+                t = 10;
+            }
+            flag_kind_ER = 't';
+            // Start counter
+            timer_tid->start(t*1000);
+        }
+    }
+
+}
+
+void MainWindow::tid_check()
+{
+
     QString str = "t"; // check TID (DUT)
     uart_fpga_writeData(str.toLocal8Bit());
     flag_kind_ER = 't';
+
 }
+
 
 void MainWindow::on_pushButton_DUT_SRAM_Write_FF_clicked()
 {
@@ -265,4 +320,34 @@ void MainWindow::on_pushButton_DUT_SRAM_Write_clicked()
     uart_fpga_writeData(str.toLocal8Bit());
     flag_data_pattern = 0b10101010;
     flag_kind_ER = 'W';
+}
+
+void MainWindow::write_report(QString st_data)
+{
+    QString filename = "SRAM_Log_"+ui->lineEdit_chipname->text()+".txt";
+    QString st_time = get_time_string();
+    QFile file( filename );
+    QFileInfo check_file(filename);
+    // check if file exists and if yes: Is it really a file and no directory?
+    if (check_file.exists() && check_file.isFile()) { // add more data to file
+        if (file.open(QFile::Append))
+        {
+                QTextStream stream(&file);
+                stream << st_time+" "+st_data+"\n" << endl;
+        }
+    } else { // open new file
+        if ( file.open(QIODevice::ReadWrite) )
+        {
+            QTextStream stream( &file );
+            stream << st_time+" "+st_data << endl;
+        }
+    }
+    file.close();
+}
+QString MainWindow::get_time_string()
+{
+    QString fmt = "yyyyMMddhhmmss";
+    QString timeStr = QDateTime::currentDateTime().toString(fmt);
+
+    return timeStr;
 }

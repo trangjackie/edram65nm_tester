@@ -12,10 +12,10 @@ public:
     int selected_block;
     bool data_avarible;
     void convert_data_to_image(QImage* img);
-    void data_classify();
+    int data_classify();
 
 
-    int iTID[12];
+    uint iTID[12];
     int iWER[17];
     int iSER[17];
 
