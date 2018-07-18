@@ -9,6 +9,7 @@
 #include <QBitArray>
 
 
+
 namespace Ui {
 class MainWindow;
 }
@@ -40,6 +41,10 @@ private slots:
     void on_pushButton_DUT_SIPO_set_clicked();
 
     void on_pushButton_TestChar_clicked();
+
+    void on_pushButton_DUT_S12_Read_clicked();
+
+    void on_pushButton_DUT_S12_Write_clicked();
 
 private:
     Ui::MainWindow *ui;

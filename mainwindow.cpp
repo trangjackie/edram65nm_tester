@@ -235,11 +235,11 @@ void MainWindow::on_pushButton_uart_fpga_connect_clicked()
 
 void MainWindow::uart_fpga_readData()
 {
-    int type_data;
+    char type_data;
     raw_data->raw_data->clear();
     raw_data->raw_data->append(uart_fpga->readAll());
     //qDebug("data come 0");
-    while (uart_fpga->waitForReadyRead(50)){
+    while (uart_fpga->waitForReadyRead(200)){
             //qDebug("data come 1");
             raw_data->raw_data->append(uart_fpga->readAll());
     }
@@ -255,14 +255,14 @@ void MainWindow::uart_fpga_readData()
     ui->plainTextEdit_console->clear();
     ui->plainTextEdit_console->insertPlainText(QString(*raw_data->raw_data));
 
-    ui->lineEdit_SIPO_verifydata->setText(raw_data->raw_data->toHex());
+
     // classify data after read
     type_data = raw_data->data_classify();
-    if (type_data == 3){
-
+    if (type_data == FPGA_SIPO_CONFIG){
+        ui->lineEdit_SIPO_verifydata->setText(raw_data->raw_data->toHex());
 
     }
-    if (type_data == 1){
+    if ((type_data == FPGA_S12_READ)|(type_data == FPGA_SEND_TEST_CHAR)){
         if (raw_data->data_avarible)
         {
             QImage img(128, 256, QImage::Format_RGB888);
@@ -360,7 +360,7 @@ void MainWindow::on_pushButton_DUT_SIPO_set_clicked()
 
     payload.resize(8);
     payload[0]=8;
-    payload[1]='U';
+    payload[1]=FPGA_SIPO_CONFIG;
     payload[2]=setdata[0];
     payload[3]=setdata[1];
     payload[4]=setdata[2];
@@ -381,7 +381,32 @@ void MainWindow::on_pushButton_TestChar_clicked()
     QByteArray payload;
     payload.resize(2);
     payload[0]=2;
-    payload[1]='T';
+    payload[1]=FPGA_SEND_TEST_CHAR;
+
+    uart_fpga_writeData(payload);
+}
+
+
+void MainWindow::on_pushButton_DUT_S12_Read_clicked()
+{
+    QByteArray payload;
+    payload.resize(2);
+    payload[0]=2;
+    payload[1]=FPGA_S12_READ;
+
+    uart_fpga_writeData(payload);
+}
+
+void MainWindow::on_pushButton_DUT_S12_Write_clicked()
+{
+    QByteArray payload;
+    QString str = ui->lineEdit_datapattern->text();
+    bool bStatus = false;
+    uint nHex = str.toUInt(&bStatus,16);
+    payload.resize(3);
+    payload[0]=3;
+    payload[1]=FPGA_S12_WRITE;
+    payload[2]= nHex;
 
     uart_fpga_writeData(payload);
 }

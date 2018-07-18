@@ -3,21 +3,26 @@
 
 #include <QImage>
 
+/*
+ * define command char for fpga
+ *
+*/
+#define FPGA_SEND_TEST_CHAR 'T'
+#define FPGA_SIPO_CONFIG 'U'
+#define FPGA_S12_READ 'D'
+#define FPGA_S12_WRITE 'A'
+
 class dut_data
 {
 public:
     dut_data();
     ~dut_data();
     QByteArray *raw_data;
-    int selected_block;
+
     bool data_avarible;
     void convert_data_to_image(QImage* img);
-    int data_classify();
+    char data_classify();
 
-
-    uint iTID[12];
-    int iWER[17];
-    int iSER[17];
 
 
 private:
