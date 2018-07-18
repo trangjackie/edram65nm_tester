@@ -136,7 +136,7 @@ void MainWindow::onSIPOCheckbox_change()
         if (ba_SIPO_setdata->testBit(i)) st_SIPO_setdata.prepend("1");
         else st_SIPO_setdata.prepend("0");
     }
-    // convert bitarray to hex string
+    // convert bitarray to hex string hhhh
     //bytes = my_bitsToBytes(ba_SIPO_setdata);
     //st_SIPO_setdata.append(" = ");
     //st_SIPO_setdata.append(bytes.toHex());
