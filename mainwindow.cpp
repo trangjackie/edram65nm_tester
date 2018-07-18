@@ -23,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // Timer for TID auto test
         timer_tid = new QTimer();
         //connect(timer_tid, SIGNAL(timeout()), this, SLOT(tid_check()));
-    // DUT data
+    // DUT databbbb
     raw_data = new dut_data;
     ba_SIPO_setdata = new QBitArray(48);
     //
