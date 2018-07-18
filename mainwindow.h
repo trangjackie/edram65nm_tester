@@ -6,6 +6,7 @@
 #include "uart/settingsdialog.h"
 #include "dut_data.h"
 #include <QTimer>
+#include <QBitArray>
 
 
 namespace Ui {
@@ -33,30 +34,22 @@ private slots:
 
     void uart_fpga_handleError(QSerialPort::SerialPortError error);
 
-    void on_pushButton_DUT_SRAM_Read_clicked();
 
-    void on_pushButton_TID_check_clicked();
+    void onSIPOCheckbox_change();
 
-    void on_pushButton_DUT_SRAM_Write_FF_clicked();
+    void on_pushButton_DUT_SIPO_set_clicked();
 
-    void on_pushButton_DUT_SRAM_Write_00_clicked();
-
-    void on_pushButton_DUT_SRAM_Write_55_clicked();
-
-    void on_pushButton_DUT_SRAM_Write_A5_clicked();
-
-    void on_pushButton_DUT_SRAM_Write_clicked();
-
-    void block_select_handle();
-
-    void tid_check();
+    void on_pushButton_TestChar_clicked();
 
 private:
     Ui::MainWindow *ui;
     SettingsDialog *uart_fpga_setting;
     QSerialPort *uart_fpga;
-    char flag_kind_ER;
     dut_data *raw_data;
+    QBitArray *ba_SIPO_setdata;
+
+    char flag_kind_ER;
+
     int flag_data_pattern;
 
     QTimer *timer_tid;
@@ -67,6 +60,8 @@ private:
     void write_report(QString str_data);
     QString get_time_string();
 
+    void SIPOCheckbox_setup();
+    QByteArray my_bitsToBytes(QBitArray* bits);
 };
 
 #endif // MAINWINDOW_H

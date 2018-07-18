@@ -22,11 +22,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Timer for TID auto test
         timer_tid = new QTimer();
-        connect(timer_tid, SIGNAL(timeout()), this, SLOT(tid_check()));
+        //connect(timer_tid, SIGNAL(timeout()), this, SLOT(tid_check()));
     // DUT data
     raw_data = new dut_data;
-    radiobutton_block_select_setup();
-    ui->radioButton_b0->setChecked(true);
+    ba_SIPO_setdata = new QBitArray(48);
+    //
+    SIPOCheckbox_setup();
+    onSIPOCheckbox_change();
+
 }
 
 MainWindow::~MainWindow()
@@ -34,6 +37,121 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+/*
+ * setup signals for checkbox
+ */
+void MainWindow::SIPOCheckbox_setup()
+{
+    connect(ui->cb_b0, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b1, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b2, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b3, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b4, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b5, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b6, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b7, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b8, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b9, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b10, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b11, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b12, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b13, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b14, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b15, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b16, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b17, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b18, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b19, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b20, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b21, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b22, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b23, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b24, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b25, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b26, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b27, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b28, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b29, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b30, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b31, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b32, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b33, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b34, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b35, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b36, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b37, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+    connect(ui->cb_b38, SIGNAL(stateChanged(int)), this, SLOT(onSIPOCheckbox_change()));
+
+}
+void MainWindow::onSIPOCheckbox_change()
+{
+    QString st_SIPO_setdata;
+    QByteArray bytes;
+    int i;
+    ba_SIPO_setdata->setBit(0, ui->cb_b0->isChecked());
+    ba_SIPO_setdata->setBit(1, ui->cb_b1->isChecked());
+    ba_SIPO_setdata->setBit(2, ui->cb_b2->isChecked());
+    ba_SIPO_setdata->setBit(3, ui->cb_b3->isChecked());
+    ba_SIPO_setdata->setBit(4, ui->cb_b4->isChecked());
+    ba_SIPO_setdata->setBit(5, ui->cb_b5->isChecked());
+    ba_SIPO_setdata->setBit(6, ui->cb_b6->isChecked());
+    ba_SIPO_setdata->setBit(7, ui->cb_b7->isChecked());
+    ba_SIPO_setdata->setBit(8, ui->cb_b8->isChecked());
+    ba_SIPO_setdata->setBit(9, ui->cb_b9->isChecked());
+    ba_SIPO_setdata->setBit(10, ui->cb_b10->isChecked());
+    ba_SIPO_setdata->setBit(11, ui->cb_b11->isChecked());
+    ba_SIPO_setdata->setBit(12, ui->cb_b12->isChecked());
+    ba_SIPO_setdata->setBit(13, ui->cb_b13->isChecked());
+    ba_SIPO_setdata->setBit(14, ui->cb_b14->isChecked());
+    ba_SIPO_setdata->setBit(15, ui->cb_b15->isChecked());
+    ba_SIPO_setdata->setBit(16, ui->cb_b16->isChecked());
+    ba_SIPO_setdata->setBit(17, ui->cb_b17->isChecked());
+    ba_SIPO_setdata->setBit(18, ui->cb_b18->isChecked());
+    ba_SIPO_setdata->setBit(19, ui->cb_b19->isChecked());
+    ba_SIPO_setdata->setBit(20, ui->cb_b20->isChecked());
+    ba_SIPO_setdata->setBit(21, ui->cb_b21->isChecked());
+    ba_SIPO_setdata->setBit(22, ui->cb_b22->isChecked());
+    ba_SIPO_setdata->setBit(23, ui->cb_b23->isChecked());
+    ba_SIPO_setdata->setBit(24, ui->cb_b24->isChecked());
+    ba_SIPO_setdata->setBit(25, ui->cb_b25->isChecked());
+    ba_SIPO_setdata->setBit(26, ui->cb_b26->isChecked());
+    ba_SIPO_setdata->setBit(27, ui->cb_b27->isChecked());
+    ba_SIPO_setdata->setBit(28, ui->cb_b28->isChecked());
+    ba_SIPO_setdata->setBit(29, ui->cb_b29->isChecked());
+    ba_SIPO_setdata->setBit(30, ui->cb_b30->isChecked());
+    ba_SIPO_setdata->setBit(31, ui->cb_b31->isChecked());
+    ba_SIPO_setdata->setBit(32, ui->cb_b32->isChecked());
+    ba_SIPO_setdata->setBit(33, ui->cb_b33->isChecked());
+    ba_SIPO_setdata->setBit(34, ui->cb_b34->isChecked());
+    ba_SIPO_setdata->setBit(35, ui->cb_b35->isChecked());
+    ba_SIPO_setdata->setBit(36, ui->cb_b36->isChecked());
+    ba_SIPO_setdata->setBit(37, ui->cb_b37->isChecked());
+    for (i=38;i<48;i++){
+        ba_SIPO_setdata->setBit(i, ui->cb_b38->isChecked());
+    }
+
+    // convert bitarray to binary string
+    for (i=0;i<ba_SIPO_setdata->size();i++){
+        if ((i%8)==0) st_SIPO_setdata.prepend(" ");
+        if (ba_SIPO_setdata->testBit(i)) st_SIPO_setdata.prepend("1");
+        else st_SIPO_setdata.prepend("0");
+    }
+    // convert bitarray to hex string
+    //bytes = my_bitsToBytes(ba_SIPO_setdata);
+    //st_SIPO_setdata.append(" = ");
+    //st_SIPO_setdata.append(bytes.toHex());
+    ui->lineEdit_SIPO_setdata->setText(st_SIPO_setdata);
+
+}
+QByteArray MainWindow::my_bitsToBytes(QBitArray* bits) {
+    QByteArray bytes;
+    bytes.resize(bits->count()/8);
+    bytes.fill(0);
+    // Convert from QBitArray to QByteArray
+    for(int b=0; b<bits->count(); ++b)
+        bytes[b/8] = ( bytes.at(b/8) | ((bits->testBit(b)?1:0)<<(b%8)));
+    return bytes;
+}
 void MainWindow::on_pushButton_app_close_clicked()
 {
     QMessageBox msgBox;
@@ -61,54 +179,7 @@ void MainWindow::on_pushButton_uart_fpga_setting_clicked()
     uart_fpga_setting->show();
 }
 
-void MainWindow::radiobutton_block_select_setup()
-{
-    connect(ui->radioButton_b0 ,SIGNAL(clicked()),this,SLOT(block_select_handle()));
-    connect(ui->radioButton_b1 ,SIGNAL(clicked()),this,SLOT(block_select_handle()));
-    connect(ui->radioButton_b2 ,SIGNAL(clicked()),this,SLOT(block_select_handle()));
-    connect(ui->radioButton_b3 ,SIGNAL(clicked()),this,SLOT(block_select_handle()));
-    connect(ui->radioButton_b4 ,SIGNAL(clicked()),this,SLOT(block_select_handle()));
-    connect(ui->radioButton_b5 ,SIGNAL(clicked()),this,SLOT(block_select_handle()));
-    connect(ui->radioButton_b6 ,SIGNAL(clicked()),this,SLOT(block_select_handle()));
-    connect(ui->radioButton_b7 ,SIGNAL(clicked()),this,SLOT(block_select_handle()));
-    connect(ui->radioButton_b8 ,SIGNAL(clicked()),this,SLOT(block_select_handle()));
-    connect(ui->radioButton_b9 ,SIGNAL(clicked()),this,SLOT(block_select_handle()));
-    connect(ui->radioButton_b10 ,SIGNAL(clicked()),this,SLOT(block_select_handle()));
-    connect(ui->radioButton_b11 ,SIGNAL(clicked()),this,SLOT(block_select_handle()));
-    connect(ui->radioButton_b12 ,SIGNAL(clicked()),this,SLOT(block_select_handle()));
-    connect(ui->radioButton_b13 ,SIGNAL(clicked()),this,SLOT(block_select_handle()));
-    connect(ui->radioButton_b14 ,SIGNAL(clicked()),this,SLOT(block_select_handle()));
-    connect(ui->radioButton_b15 ,SIGNAL(clicked()),this,SLOT(block_select_handle()));
-    connect(ui->radioButton_b1tid ,SIGNAL(clicked()),this,SLOT(block_select_handle()));
-}
 
-void MainWindow::block_select_handle()
-{
-    if (ui->radioButton_b0->isChecked()){raw_data->selected_block = 0; }
-    if (ui->radioButton_b1->isChecked()){raw_data->selected_block = 1; }
-    if (ui->radioButton_b2->isChecked()){raw_data->selected_block = 2; }
-    if (ui->radioButton_b3->isChecked()){raw_data->selected_block = 3; }
-    if (ui->radioButton_b4->isChecked()){raw_data->selected_block = 4; }
-    if (ui->radioButton_b5->isChecked()){raw_data->selected_block = 5; }
-    if (ui->radioButton_b6->isChecked()){raw_data->selected_block = 6; }
-    if (ui->radioButton_b7->isChecked()){raw_data->selected_block = 7; }
-    if (ui->radioButton_b8->isChecked()){raw_data->selected_block = 8; }
-    if (ui->radioButton_b9->isChecked()){raw_data->selected_block = 9; }
-    if (ui->radioButton_b10->isChecked()){raw_data->selected_block = 10; }
-    if (ui->radioButton_b11->isChecked()){raw_data->selected_block = 11; }
-    if (ui->radioButton_b12->isChecked()){raw_data->selected_block = 12; }
-    if (ui->radioButton_b13->isChecked()){raw_data->selected_block = 13; }
-    if (ui->radioButton_b14->isChecked()){raw_data->selected_block = 14; }
-    if (ui->radioButton_b15->isChecked()){raw_data->selected_block = 15; }
-    if (ui->radioButton_b1tid->isChecked()){raw_data->selected_block = 16; }
-    if (raw_data->data_avarible)
-    {
-        QImage img(128, 256, QImage::Format_RGB888);
-        img.fill(QColor(Qt::white).rgb());
-        raw_data->convert_data_to_image(&img);
-        ui->label_bitmap->setPixmap(QPixmap::fromImage(img));
-    }
-}
 
 void MainWindow::on_pushButton_uart_fpga_connect_clicked()
 {
@@ -184,35 +255,11 @@ void MainWindow::uart_fpga_readData()
     ui->plainTextEdit_console->clear();
     ui->plainTextEdit_console->insertPlainText(QString(*raw_data->raw_data));
 
+    ui->lineEdit_SIPO_verifydata->setText(raw_data->raw_data->toHex());
     // classify data after read
     type_data = raw_data->data_classify();
     if (type_data == 3){
-        // update TID if have
-        ui->label_f_TID_0->setText(QString::number(raw_data->iTID[0]));
-        ui->label_f_TID_1->setText(QString::number(raw_data->iTID[1]));
-        ui->label_f_TID_2->setText(QString::number(raw_data->iTID[2]));
-        ui->label_f_TID_3->setText(QString::number(raw_data->iTID[3]));
-        ui->label_f_TID_4->setText(QString::number(raw_data->iTID[4]));
-        ui->label_f_TID_5->setText(QString::number(raw_data->iTID[5]));
-        ui->label_f_TID_6->setText(QString::number(raw_data->iTID[6]));
-        ui->label_f_TID_7->setText(QString::number(raw_data->iTID[7]));
-        ui->label_f_TID_8->setText(QString::number(raw_data->iTID[8]));
-        ui->label_f_TID_9->setText(QString::number(raw_data->iTID[9]));
-        ui->label_f_TID_10->setText(QString::number(raw_data->iTID[10]));
-        ui->label_f_TID_11->setText(QString::number(raw_data->iTID[11]));
 
-        write_report("TID "+QString::number(raw_data->iTID[0])+
-                " "+QString::number(raw_data->iTID[1])+
-                " "+QString::number(raw_data->iTID[2])+
-                " "+QString::number(raw_data->iTID[3])+
-                " "+QString::number(raw_data->iTID[4])+
-                " "+QString::number(raw_data->iTID[5])+
-                " "+QString::number(raw_data->iTID[6])+
-                " "+QString::number(raw_data->iTID[7])+
-                " "+QString::number(raw_data->iTID[8])+
-                " "+QString::number(raw_data->iTID[9])+
-                " "+QString::number(raw_data->iTID[10])+
-                " "+QString::number(raw_data->iTID[11]));
 
     }
     if (type_data == 1){
@@ -237,7 +284,7 @@ void MainWindow::uart_fpga_handleError(QSerialPort::SerialPortError error)
     QMessageBox::critical(this, QString("Critical Error"), uart_fpga->errorString());
     }
 }
-
+/*
 void MainWindow::on_pushButton_DUT_SRAM_Read_clicked()
 {
     QString str = "U"; // Read all data from memory (DUT)
@@ -248,7 +295,7 @@ void MainWindow::on_pushButton_DUT_SRAM_Read_clicked()
 void MainWindow::on_pushButton_TID_check_clicked()
 {
     if (ui->lineEdit_timer->text().isEmpty()){
-        tid_check();
+        //tid_check();
     } else {
     if (timer_tid->isActive())
         {
@@ -271,60 +318,12 @@ void MainWindow::on_pushButton_TID_check_clicked()
     }
 
 }
+*/
 
-void MainWindow::tid_check()
-{
-
-    QString str = "t"; // check TID (DUT)
-    uart_fpga_writeData(str.toLocal8Bit());
-    flag_kind_ER = 't';
-
-}
-
-
-void MainWindow::on_pushButton_DUT_SRAM_Write_FF_clicked()
-{
-    QString str = "F"; // Write data to memory (DUT)
-    uart_fpga_writeData(str.toLocal8Bit());
-    flag_data_pattern = 0b11111111;
-    flag_kind_ER = 'W';
-}
-
-void MainWindow::on_pushButton_DUT_SRAM_Write_00_clicked()
-{
-    QString str = "0"; // Write data to memory (DUT)
-    uart_fpga_writeData(str.toLocal8Bit());
-    flag_data_pattern = 0b00000000;
-    flag_kind_ER = 'W';
-}
-
-void MainWindow::on_pushButton_DUT_SRAM_Write_55_clicked()
-{
-    QString str = "6"; // Write data to memory (DUT)
-    uart_fpga_writeData(str.toLocal8Bit());
-    flag_data_pattern = 0b01010101;
-    flag_kind_ER = 'W';
-}
-
-void MainWindow::on_pushButton_DUT_SRAM_Write_A5_clicked()
-{
-    QString str = "5"; // Write data to memory (DUT)
-    uart_fpga_writeData(str.toLocal8Bit());
-    flag_data_pattern = 0b10100101;
-    flag_kind_ER = 'W';
-}
-
-void MainWindow::on_pushButton_DUT_SRAM_Write_clicked()
-{
-    QString str = "A"; // Write data to memory (DUT)
-    uart_fpga_writeData(str.toLocal8Bit());
-    flag_data_pattern = 0b10101010;
-    flag_kind_ER = 'W';
-}
 
 void MainWindow::write_report(QString st_data)
 {
-    QString filename = "SRAM_Log_"+ui->lineEdit_chipname->text()+".txt";
+    QString filename = "eDRAM_Log_"+ui->lineEdit_chipname->text()+".txt";
     QString st_time = get_time_string();
     QFile file( filename );
     QFileInfo check_file(filename);
@@ -350,4 +349,39 @@ QString MainWindow::get_time_string()
     QString timeStr = QDateTime::currentDateTime().toString(fmt);
 
     return timeStr;
+}
+
+void MainWindow::on_pushButton_DUT_SIPO_set_clicked()
+{
+    QString str;
+    QByteArray payload;
+    QByteArray setdata;
+    setdata = my_bitsToBytes(ba_SIPO_setdata);
+
+    payload.resize(8);
+    payload[0]=8;
+    payload[1]='U';
+    payload[2]=setdata[0];
+    payload[3]=setdata[1];
+    payload[4]=setdata[2];
+    payload[5]=setdata[3];
+    payload[6]=setdata[4];
+    payload[7]=setdata[5];
+
+    str = ui->lineEdit_SIPO_setdata->text();
+    str.append(" = ");
+    str.append(payload.toHex());
+    ui->lineEdit_SIPO_setdata->setText(str);
+
+    uart_fpga_writeData(payload);
+}
+
+void MainWindow::on_pushButton_TestChar_clicked()
+{
+    QByteArray payload;
+    payload.resize(2);
+    payload[0]=2;
+    payload[1]='T';
+
+    uart_fpga_writeData(payload);
 }
