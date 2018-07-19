@@ -11,6 +11,8 @@
 #define FPGA_SIPO_CONFIG 'U'
 #define FPGA_S12_READ 'D'
 #define FPGA_S12_WRITE 'A'
+#define FPGA_E1_READ 'E'
+#define FPGA_E1_WRITE 'F'
 
 class dut_data
 {

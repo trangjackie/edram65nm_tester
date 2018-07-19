@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>930</width>
-    <height>774</height>
+    <height>874</height>
    </rect>
   </property>
   <property name="font">
@@ -47,10 +47,10 @@
        <string>Select = precharge to VDD, unselect = precharge to GND</string>
       </property>
       <property name="text">
-       <string>wpc_level</string>
+       <string>wbl_hold_level</string>
       </property>
       <property name="checked">
-       <bool>true</bool>
+       <bool>false</bool>
       </property>
      </widget>
     </item>
@@ -296,7 +296,7 @@
      </widget>
     </item>
     <item row="23" column="2">
-     <widget class="QPushButton" name="pushButton_DUT_SRAM_Read">
+     <widget class="QPushButton" name="pushButton_DUT_eDRAM1_Read">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -331,7 +331,7 @@
      </widget>
     </item>
     <item row="22" column="2">
-     <widget class="QPushButton" name="pushButton_DUT_SRAM_Write">
+     <widget class="QPushButton" name="pushButton_DUT_eDRAM1_Write">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
         <horstretch>0</horstretch>
@@ -820,10 +820,10 @@
     <item row="17" column="1">
      <widget class="QCheckBox" name="cb_b22">
       <property name="text">
-       <string>wpc_level</string>
+       <string>wbl_hold_level</string>
       </property>
       <property name="checked">
-       <bool>true</bool>
+       <bool>false</bool>
       </property>
      </widget>
     </item>
@@ -901,9 +901,6 @@
       </property>
      </widget>
     </item>
-    <item row="20" column="1">
-     <widget class="QLineEdit" name="lineEdit_datapattern"/>
-    </item>
     <item row="9" column="0">
      <widget class="QCheckBox" name="cb_b3">
       <property name="toolTip">
@@ -957,7 +954,7 @@
     <item row="20" column="0">
      <widget class="QLabel" name="label_13">
       <property name="text">
-       <string>Data pattern (hex)</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Addr+2 byte data (4 byte hex)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -980,7 +977,7 @@
     <item row="21" column="0">
      <widget class="QLabel" name="label_14">
       <property name="text">
-       <string>Refesh time (us)</string>
+       <string>Refesh time (clk cycle)</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -988,7 +985,65 @@
      </widget>
     </item>
     <item row="21" column="1">
-     <widget class="QLineEdit" name="lineEdit_refeshtime"/>
+     <widget class="QLineEdit" name="lineEdit_refeshtime">
+      <property name="text">
+       <string>3000</string>
+      </property>
+     </widget>
+    </item>
+    <item row="20" column="1" colspan="2">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLineEdit" name="lineEdit_DUT_Col">
+        <property name="toolTip">
+         <string>col addr 4bit</string>
+        </property>
+        <property name="text">
+         <string>00</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineEdit_DUT_Row">
+        <property name="toolTip">
+         <string>row addr 8bit</string>
+        </property>
+        <property name="text">
+         <string>00</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineEdit_DUT_data1">
+        <property name="toolTip">
+         <string>first datapattern</string>
+        </property>
+        <property name="text">
+         <string>A5</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineEdit_DUT_data2">
+        <property name="toolTip">
+         <string>second datapattern</string>
+        </property>
+        <property name="text">
+         <string>5A</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="20" column="3">
+     <widget class="QCheckBox" name="checkBox_DUT_WriteOne">
+      <property name="toolTip">
+       <string>check for write 1 address only</string>
+      </property>
+      <property name="text">
+       <string>Write one times</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>

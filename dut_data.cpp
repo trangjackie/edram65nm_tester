@@ -33,6 +33,10 @@ char dut_data::data_classify()
         sram_data->append(raw_data->mid(1,raw_data->length()-1));
         data_avarible = true;
         ret = FPGA_S12_READ;
+    } else if (raw_data->at(0) == FPGA_E1_READ) {
+        sram_data->append(raw_data->mid(1,raw_data->length()-1));
+        data_avarible = true;
+        ret = FPGA_E1_READ;
     }
 
     return ret;
@@ -41,6 +45,7 @@ char dut_data::data_classify()
 void dut_data::convert_data_to_image(QImage* img)
 {
     char cdata,cmask;
+    bool color = false;
     // data array
     for (int x = 0; x < 16; x++)
     {
@@ -48,9 +53,11 @@ void dut_data::convert_data_to_image(QImage* img)
         {
             if ((x*256+y)<=(raw_data->length()-1)){
                 cdata = raw_data->at(x*256+y);
+                color = false;
             }
             else {
                 cdata = 0;
+                color = true;
             }
             cmask = 0x01;
             for (int b = 0; b<8;b++)
@@ -61,7 +68,12 @@ void dut_data::convert_data_to_image(QImage* img)
                 }
                 else
                 {
-                    img->setPixel(16*b+x, 255-y, qRgb(0, 0, 0));
+                    if (color){
+                        img->setPixel(16*b+x, 255-y, qRgb(50, 240, 10));
+                    } else {
+                        img->setPixel(16*b+x, 255-y, qRgb(0, 0, 0));
+                    }
+
                 }
                 cmask = cmask<<1;
             }

@@ -46,6 +46,10 @@ private slots:
 
     void on_pushButton_DUT_S12_Write_clicked();
 
+    void on_pushButton_DUT_eDRAM1_Read_clicked();
+
+    void on_pushButton_DUT_eDRAM1_Write_clicked();
+
 private:
     Ui::MainWindow *ui;
     SettingsDialog *uart_fpga_setting;
