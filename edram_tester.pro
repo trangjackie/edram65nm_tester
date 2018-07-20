@@ -40,3 +40,20 @@ FORMS += \
 
 RESOURCES += \
     icons/icons.qrc
+
+DISTFILES += \
+    ../../FPGA/edram_65nm/edram_65nm/edram_65nm.v \
+    ../../FPGA/edram_65nm/edram_65nm/edram_65nm.ucf \
+    ../../FPGA/edram_65nm/edram_65nm/fifo.v \
+    ../../FPGA/edram_65nm/edram_65nm/my_edram_controller.v \
+    ../../FPGA/edram_65nm/edram_65nm/my_sipo_controller.v \
+    ../../FPGA/edram_65nm/edram_65nm/my_sram_controller.v \
+    ../../FPGA/edram_65nm/edram_65nm/uart_defines.v \
+    ../../FPGA/edram_65nm/edram_65nm/uart_receiver.v \
+    ../../FPGA/edram_65nm/edram_65nm/uart_regs.v \
+    ../../FPGA/edram_65nm/edram_65nm/uart_rfifo.v \
+    ../../FPGA/edram_65nm/edram_65nm/uart_sync_flops.v \
+    ../../FPGA/edram_65nm/edram_65nm/uart_tfifo.v \
+    ../../FPGA/edram_65nm/edram_65nm/uart_transmitter.v \
+    ../../FPGA/edram_65nm/edram_65nm/tma.v \
+    ../../FPGA/edram_65nm/edram_65nm/timescale.v
