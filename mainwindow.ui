@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>930</width>
-    <height>874</height>
+    <height>657</height>
    </rect>
   </property>
   <property name="font">
@@ -21,6 +21,23 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
+    <item row="17" column="2">
+     <widget class="QCheckBox" name="cb_b32">
+      <property name="text">
+       <string>strobe_4</string>
+      </property>
+     </widget>
+    </item>
+    <item row="16" column="3">
+     <widget class="QLabel" name="label_11">
+      <property name="text">
+       <string>Config code</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+    </item>
     <item row="14" column="0">
      <widget class="QCheckBox" name="cb_b8">
       <property name="text">
@@ -144,7 +161,7 @@
     </item>
     <item row="1" column="2">
      <layout class="QGridLayout" name="gridLayout_3">
-      <item row="1" column="0">
+      <item row="1" column="1">
        <widget class="QPushButton" name="pushButton_VDD_core_update">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -157,8 +174,31 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="0">
+      <item row="0" column="1">
        <widget class="QLineEdit" name="lineEdit_VDD_core">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QPushButton" name="pushButton_VDD_IO">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>VDD IO (CH2)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLineEdit" name="lineEdit_VDD_IO">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
           <horstretch>0</horstretch>
@@ -296,7 +336,7 @@
      </widget>
     </item>
     <item row="23" column="2">
-     <widget class="QPushButton" name="pushButton_DUT_eDRAM1_Read">
+     <widget class="QPushButton" name="pushButton_DUT_eDRAM2_Write">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -316,11 +356,11 @@
        </size>
       </property>
       <property name="text">
-       <string>eDRAM 1 Read</string>
+       <string>eDRAM 2 Write</string>
       </property>
       <property name="icon">
        <iconset resource="icons/icons.qrc">
-        <normaloff>:/new/prefix1/package-downgrade.svg</normaloff>:/new/prefix1/package-downgrade.svg</iconset>
+        <normaloff>:/new/prefix1/package-upgrade.svg</normaloff>:/new/prefix1/package-upgrade.svg</iconset>
       </property>
       <property name="iconSize">
        <size>
@@ -375,75 +415,6 @@
       </property>
      </widget>
     </item>
-    <item row="0" column="0">
-     <widget class="QLabel" name="label">
-      <property name="text">
-       <string>UART fpga</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="0">
-     <widget class="QPushButton" name="pushButton_uart_fpga_connect">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>Connect</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0">
-     <widget class="QPushButton" name="pushButton_uart_fpga_setting">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>Setting</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QLabel" name="label_2">
-      <property name="text">
-       <string>UART power</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QPushButton" name="pushButton_uart_power_setting">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>Setting</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="3" rowspan="2" colspan="2">
-     <widget class="QPlainTextEdit" name="plainTextEdit_console">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-     </widget>
-    </item>
     <item row="23" column="1">
      <widget class="QPushButton" name="pushButton_DUT_S12_Read">
       <property name="sizePolicy">
@@ -492,16 +463,13 @@
       </property>
      </widget>
     </item>
-    <item row="2" column="1">
-     <widget class="QPushButton" name="pushButton_uart_power_connect">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
+    <item row="17" column="1">
+     <widget class="QCheckBox" name="cb_b22">
       <property name="text">
-       <string>Connect</string>
+       <string>wbl_hold_level</string>
+      </property>
+      <property name="checked">
+       <bool>false</bool>
       </property>
      </widget>
     </item>
@@ -536,23 +504,6 @@
       </property>
      </widget>
     </item>
-    <item row="17" column="2">
-     <widget class="QCheckBox" name="cb_b32">
-      <property name="text">
-       <string>strobe_4</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="2">
-     <widget class="QLabel" name="label_5">
-      <property name="text">
-       <string>Power</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-    </item>
     <item row="3" column="2">
      <widget class="QLabel" name="label_18">
       <property name="text">
@@ -560,46 +511,6 @@
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="2">
-     <layout class="QGridLayout" name="gridLayout_4">
-      <item row="0" column="0">
-       <widget class="QLineEdit" name="lineEdit_VDD_IO">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QPushButton" name="pushButton_VDD_IO">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>VDD IO (CH2)</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item row="0" column="4">
-     <widget class="QPushButton" name="pushButton_app_close">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>Quit</string>
       </property>
      </widget>
     </item>
@@ -622,9 +533,6 @@
        <string>strobe_1</string>
       </property>
      </widget>
-    </item>
-    <item row="18" column="1" colspan="3">
-     <widget class="QLineEdit" name="lineEdit_SIPO_setdata"/>
     </item>
     <item row="16" column="1">
      <widget class="QCheckBox" name="cb_b21">
@@ -817,16 +725,6 @@
       </property>
      </widget>
     </item>
-    <item row="17" column="1">
-     <widget class="QCheckBox" name="cb_b22">
-      <property name="text">
-       <string>wbl_hold_level</string>
-      </property>
-      <property name="checked">
-       <bool>false</bool>
-      </property>
-     </widget>
-    </item>
     <item row="9" column="3">
      <widget class="QCheckBox" name="cb_b35">
       <property name="text">
@@ -871,6 +769,19 @@
       </property>
      </widget>
     </item>
+    <item row="8" column="0">
+     <widget class="QCheckBox" name="cb_b2">
+      <property name="toolTip">
+       <string>80 inv</string>
+      </property>
+      <property name="text">
+       <string>lsaen_1</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
     <item row="11" column="0">
      <widget class="QCheckBox" name="cb_b5">
       <property name="toolTip">
@@ -888,19 +799,6 @@
       </property>
      </widget>
     </item>
-    <item row="8" column="0">
-     <widget class="QCheckBox" name="cb_b2">
-      <property name="toolTip">
-       <string>80 inv</string>
-      </property>
-      <property name="text">
-       <string>lsaen_1</string>
-      </property>
-      <property name="checked">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
     <item row="9" column="0">
      <widget class="QCheckBox" name="cb_b3">
       <property name="toolTip">
@@ -911,16 +809,6 @@
       </property>
       <property name="checked">
        <bool>false</bool>
-      </property>
-     </widget>
-    </item>
-    <item row="18" column="0">
-     <widget class="QLabel" name="label_11">
-      <property name="text">
-       <string>Config code</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
     </item>
@@ -951,6 +839,9 @@
       </property>
      </widget>
     </item>
+    <item row="19" column="1">
+     <widget class="QLineEdit" name="lineEdit_SIPO_verifydata"/>
+    </item>
     <item row="20" column="0">
      <widget class="QLabel" name="label_13">
       <property name="text">
@@ -960,9 +851,6 @@
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-    </item>
-    <item row="19" column="1">
-     <widget class="QLineEdit" name="lineEdit_SIPO_verifydata"/>
     </item>
     <item row="19" column="0">
      <widget class="QLabel" name="label_12">
@@ -974,20 +862,13 @@
       </property>
      </widget>
     </item>
-    <item row="21" column="0">
-     <widget class="QLabel" name="label_14">
-      <property name="text">
-       <string>Refesh time (clk cycle)</string>
+    <item row="20" column="3">
+     <widget class="QCheckBox" name="checkBox_DUT_WriteOne">
+      <property name="toolTip">
+       <string>check for write 1 address only</string>
       </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-    </item>
-    <item row="21" column="1">
-     <widget class="QLineEdit" name="lineEdit_refeshtime">
       <property name="text">
-       <string>3000</string>
+       <string>Write one times</string>
       </property>
      </widget>
     </item>
@@ -1035,13 +916,126 @@
       </item>
      </layout>
     </item>
-    <item row="20" column="3">
-     <widget class="QCheckBox" name="checkBox_DUT_WriteOne">
-      <property name="toolTip">
-       <string>check for write 1 address only</string>
+    <item row="17" column="3">
+     <widget class="QLineEdit" name="lineEdit_SIPO_setdata"/>
+    </item>
+    <item row="19" column="2">
+     <widget class="QLabel" name="label_14">
+      <property name="text">
+       <string>Refesh time (clk cycle)</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="19" column="3">
+     <widget class="QLineEdit" name="lineEdit_refeshtime">
+      <property name="text">
+       <string>3000</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <layout class="QGridLayout" name="gridLayout_6">
+      <item row="2" column="0">
+       <widget class="QPushButton" name="pushButton_uart_fpga_setting">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Setting</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QPushButton" name="pushButton_uart_fpga_connect">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Connect</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" colspan="2">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>UART fpga</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="1">
+     <layout class="QGridLayout" name="gridLayout_7">
+      <item row="1" column="0">
+       <widget class="QPushButton" name="pushButton_uart_power_setting">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Setting</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QPushButton" name="pushButton_uart_power_connect">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Connect</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" colspan="2">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>UART power</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="3" column="4">
+     <widget class="QPushButton" name="pushButton_app_close">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
       </property>
       <property name="text">
-       <string>Write one times</string>
+       <string>Quit</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="3" colspan="2">
+     <widget class="QPlainTextEdit" name="plainTextEdit_console">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
       </property>
      </widget>
     </item>

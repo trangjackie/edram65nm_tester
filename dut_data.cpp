@@ -33,10 +33,14 @@ char dut_data::data_classify()
         sram_data->append(raw_data->mid(1,raw_data->length()-1));
         data_avarible = true;
         ret = FPGA_S12_READ;
-    } else if (raw_data->at(0) == FPGA_E1_READ) {
+    } else if (raw_data->at(0) == FPGA_E2_WRITE) {
         sram_data->append(raw_data->mid(1,raw_data->length()-1));
         data_avarible = true;
-        ret = FPGA_E1_READ;
+        ret = FPGA_E2_WRITE;
+    } else if (raw_data->at(0) == FPGA_E1_WRITE) {
+        sram_data->append(raw_data->mid(1,raw_data->length()-1));
+        data_avarible = true;
+        ret = FPGA_E1_WRITE;
     }
 
     return ret;

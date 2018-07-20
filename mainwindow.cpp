@@ -262,7 +262,10 @@ void MainWindow::uart_fpga_readData()
         ui->lineEdit_SIPO_verifydata->setText(raw_data->raw_data->toHex());
 
     }
-    if ((type_data == FPGA_S12_READ)|(type_data == FPGA_SEND_TEST_CHAR)|(type_data == FPGA_E1_READ)){
+    if ((type_data == FPGA_S12_READ)
+            |(type_data == FPGA_SEND_TEST_CHAR)
+            |(type_data == FPGA_E2_WRITE)
+            |(type_data == FPGA_E1_WRITE)){
         if (raw_data->data_avarible)
         {
             QImage img(128, 256, QImage::Format_RGB888);
@@ -425,15 +428,7 @@ void MainWindow::on_pushButton_DUT_S12_Write_clicked()
     uart_fpga_writeData(payload);
 }
 
-void MainWindow::on_pushButton_DUT_eDRAM1_Read_clicked()
-{
-    QByteArray payload;
-    payload.resize(2);
-    payload[0]=2;
-    payload[1]=FPGA_E1_READ;
 
-    uart_fpga_writeData(payload);
-}
 
 void MainWindow::on_pushButton_DUT_eDRAM1_Write_clicked()
 {
@@ -450,9 +445,15 @@ void MainWindow::on_pushButton_DUT_eDRAM1_Write_clicked()
     uint nData2 = str_data2.toUInt(&bStatus,16);
     uint nRefesh = str_refesh.toUInt(&bStatus,10);
     QByteArray baRefesh;
-    baRefesh.setNum(nRefesh,10);
 
+    baRefesh[0]=nRefesh;
+    baRefesh[1]=nRefesh>>8;
+    baRefesh[2]=nRefesh>>16;
+    baRefesh[3]=nRefesh>>24;
+    qDebug("refesh "+baRefesh);
+    qDebug("number %d",nRefesh);
     payload.resize(11);
+    payload.fill(0);
     payload[0]=11;
     payload[1]=FPGA_E1_WRITE;
     if (ui->checkBox_DUT_WriteOne->isChecked()){
@@ -464,9 +465,55 @@ void MainWindow::on_pushButton_DUT_eDRAM1_Write_clicked()
     payload[4]= nRow;
     payload[5]= nData1;
     payload[6]= nData2;
-    payload[7]= baRefesh[0];
-    payload[8]= baRefesh[1];
-    payload[9]= baRefesh[2];
-    payload[10]= baRefesh[3];
+
+    for (int i=0;i<baRefesh.size();i++){
+        payload[7+i] = baRefesh[baRefesh.size()-i-1];
+    }
+
+    qDebug("payload "+ payload.toHex());
+    uart_fpga_writeData(payload);
+}
+
+void MainWindow::on_pushButton_DUT_eDRAM2_Write_clicked()
+{
+    QByteArray payload;
+    QString str_data1 = ui->lineEdit_DUT_data1->text();
+    QString str_data2 = ui->lineEdit_DUT_data2->text();
+    QString str_col = ui->lineEdit_DUT_Col->text();
+    QString str_row = ui->lineEdit_DUT_Row->text();
+    QString str_refesh = ui->lineEdit_refeshtime->text();
+    bool bStatus = false;
+    uint nCol = str_col.toUInt(&bStatus,16);
+    uint nRow = str_row.toUInt(&bStatus,16);
+    uint nData1 = str_data1.toUInt(&bStatus,16);
+    uint nData2 = str_data2.toUInt(&bStatus,16);
+    uint nRefesh = str_refesh.toUInt(&bStatus,10);
+    QByteArray baRefesh;
+
+    baRefesh[0]=nRefesh;
+    baRefesh[1]=nRefesh>>8;
+    baRefesh[2]=nRefesh>>16;
+    baRefesh[3]=nRefesh>>24;
+    qDebug("refesh "+baRefesh);
+    qDebug("number %d",nRefesh);
+    payload.resize(11);
+    payload.fill(0);
+    payload[0]=11;
+    payload[1]=FPGA_E2_WRITE;
+    if (ui->checkBox_DUT_WriteOne->isChecked()){
+        payload[2] = 1;
+    } else {
+        payload[2] = 0;
+    }
+    payload[3]= nCol; // col addr 4bit
+    payload[4]= nRow;
+    payload[5]= nData1;
+    payload[6]= nData2;
+
+    for (int i=0;i<baRefesh.size();i++){
+        payload[7+i] = baRefesh[baRefesh.size()-i-1];
+    }
+
+    qDebug("payload "+ payload.toHex());
     uart_fpga_writeData(payload);
 }
