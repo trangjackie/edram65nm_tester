@@ -22,13 +22,11 @@ public:
     QByteArray *raw_data;
 
     bool data_avarible;
-    void convert_data_to_image(QImage* img);
+    void convert_data_to_image(QImage* img, QByteArray* data);
     char data_classify();
 
+       QByteArray *sram_data;
 
-
-private:
-    QByteArray *sram_data;
 
 };
 

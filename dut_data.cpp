@@ -46,7 +46,7 @@ char dut_data::data_classify()
     return ret;
 }
 
-void dut_data::convert_data_to_image(QImage* img)
+void dut_data::convert_data_to_image(QImage* img, QByteArray* data)
 {
     char cdata,cmask;
     bool color = false;
@@ -55,8 +55,8 @@ void dut_data::convert_data_to_image(QImage* img)
     {
         for (int y = 0; y < 256; y++)
         {
-            if ((x*256+y)<=(raw_data->length()-1)){
-                cdata = raw_data->at(x*256+y);
+            if ((x*256+y)<=(data->length()-1)){
+                cdata = data->at(x*256+y);
                 color = false;
             }
             else {

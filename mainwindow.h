@@ -58,6 +58,14 @@ private:
     dut_data *raw_data;
     QBitArray *ba_SIPO_setdata;
 
+    bool b_array_org[128][256];
+    bool b_array_rb[128][256];
+    bool b_array_pt[128][256];
+
+    QByteArray memdata_readback;
+    int i_retension_error;
+    int i_write_error;
+
     char flag_kind_ER;
 
     int flag_data_pattern;

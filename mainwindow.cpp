@@ -23,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // Timer for TID auto test
         timer_tid = new QTimer();
         //connect(timer_tid, SIGNAL(timeout()), this, SLOT(tid_check()));
-    // DUT databbbb
+    // DUT databbbbcvnbcvbn
     raw_data = new dut_data;
     ba_SIPO_setdata = new QBitArray(48);
     //
@@ -235,7 +235,12 @@ void MainWindow::on_pushButton_uart_fpga_connect_clicked()
 
 void MainWindow::uart_fpga_readData()
 {
+    char cdata_org, cdata_rb ,cmask, cdata_pt;
+    bool b_cell_org, b_cell_rb;
     char type_data;
+    bool ok = true;
+    int i;
+    int datasize;
     raw_data->raw_data->clear();
     raw_data->raw_data->append(uart_fpga->readAll());
     //qDebug("data come 0");
@@ -270,8 +275,80 @@ void MainWindow::uart_fpga_readData()
         {
             QImage img(128, 256, QImage::Format_RGB888);
             img.fill(QColor(Qt::white).rgb());
-            raw_data->convert_data_to_image(&img);
+            raw_data->convert_data_to_image(&img,raw_data->sram_data);
             ui->label_bitmap->setPixmap(QPixmap::fromImage(img));
+            int i_refeshtime = ui->lineEdit_refeshtime->text().toUInt(&ok,10);
+
+            for (int x = 0; x < 16; x++) {
+                for (int y = 0; y < 256; y++) // do not compare the 255th row
+                {
+                    if ((y%2==1)){
+                        cdata_pt = ui->lineEdit_DUT_data1->text().toUInt(&ok,16);
+                    } else {
+                        cdata_pt = ui->lineEdit_DUT_data2->text().toUInt(&ok,16);
+                    }
+                    if ((x*256+y)<=(raw_data->sram_data->size()-1)){
+                        cdata_org = raw_data->sram_data->at(x*256+y);
+
+                    }
+                    else {
+                        cdata_org = 0;
+                    }
+                    cmask = 0x01;
+                    for (int b = 0; b<8;b++)
+                    {
+                        if ((cdata_org&cmask)==cmask)
+                        {
+                            if (i_refeshtime == 0) {
+                                b_array_org[x*8+b][y] = true;
+                            } else {
+                                b_array_rb[x*8+b][y] = true;
+                            }
+                        }
+                        else
+                        {
+                            if (i_refeshtime == 0) {
+                                b_array_org[x*8+b][y] = false;
+                            } else {
+                                b_array_rb[x*8+b][y] = false;
+                            }
+                        }
+                        if ((cdata_pt&cmask)==cmask){
+                            b_array_pt[x*8+b][y] = true;
+                        } else {
+                            b_array_pt[x*8+b][y] = false;
+                        }
+                        cmask = cmask<<1;
+                    }
+                }
+            }
+
+
+            // canculate error rate
+            if (i_refeshtime == 0){
+                i_write_error = 0;
+                for (int x = 0; x < 128; x++) {
+                    for (int y = 0; y < 255; y++) // except the test SA row (255th)
+                    {
+                        if (b_array_org[x][y]!=b_array_pt[x][y]){
+                            i_write_error +=1;
+                        }
+                    }
+                }
+            } else {
+                i_retension_error = 0;
+                for (int x = 0; x < 128; x++) {
+                    for (int y = 0; y < 256; y++) // do not compare the 255th row
+                    {
+                        if (b_array_org[x][y]!=b_array_rb[x][y]){
+                            i_retension_error +=1;
+                            //qDebug("error %d", i_retension_error);
+                        }
+                    }
+                }
+            }
+            // show error number
+            ui->label_RetensionER->setText("TER/WER="+QString::number(i_retension_error,10)+"/"+QString::number(i_write_error,10));
         }
     }
 }
