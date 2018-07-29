@@ -542,6 +542,9 @@
       <property name="text">
        <string>strobe_4</string>
       </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
      </widget>
     </item>
     <item row="7" column="2">
@@ -711,7 +714,7 @@
        <string>strobe_3</string>
       </property>
       <property name="checked">
-       <bool>true</bool>
+       <bool>false</bool>
       </property>
      </widget>
     </item>
@@ -817,6 +820,9 @@
       <property name="text">
        <string>strobe_4 (long)</string>
       </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
      </widget>
     </item>
     <item row="7" column="0">
@@ -835,7 +841,7 @@
        <string>strobe_3</string>
       </property>
       <property name="checked">
-       <bool>true</bool>
+       <bool>false</bool>
       </property>
      </widget>
     </item>
@@ -922,7 +928,7 @@
     <item row="19" column="2">
      <widget class="QLabel" name="label_14">
       <property name="text">
-       <string>Refesh time (clk cycle)</string>
+       <string>Refresh time (clk cycle)</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -932,7 +938,7 @@
     <item row="19" column="3">
      <widget class="QLineEdit" name="lineEdit_refeshtime">
       <property name="text">
-       <string>3000</string>
+       <string>0</string>
       </property>
      </widget>
     </item>
