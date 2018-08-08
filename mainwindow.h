@@ -51,6 +51,10 @@ private slots:
 
     void on_pushButton_DUT_eDRAM2_Write_clicked();
 
+    void on_pushButton_DUT_eDRAM1_WriteReadNextCell_clicked();
+
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     SettingsDialog *uart_fpga_setting;

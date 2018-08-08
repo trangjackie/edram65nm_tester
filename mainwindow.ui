@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>930</width>
-    <height>657</height>
+    <width>1026</width>
+    <height>731</height>
    </rect>
   </property>
   <property name="font">
@@ -1052,6 +1052,32 @@
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="22" column="3">
+     <widget class="QPushButton" name="pushButton_DUT_eDRAM1_WriteReadNextCell">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>E1 W+R next cell</string>
+      </property>
+     </widget>
+    </item>
+    <item row="23" column="3">
+     <widget class="QPushButton" name="pushButton">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>E2 W+R next cell</string>
       </property>
      </widget>
     </item>
