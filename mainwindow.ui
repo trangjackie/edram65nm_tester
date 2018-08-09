@@ -21,20 +21,17 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
+    <item row="13" column="2">
+     <widget class="QCheckBox" name="cb_b28">
+      <property name="text">
+       <string>strobe_0</string>
+      </property>
+     </widget>
+    </item>
     <item row="17" column="2">
      <widget class="QCheckBox" name="cb_b32">
       <property name="text">
        <string>strobe_4</string>
-      </property>
-     </widget>
-    </item>
-    <item row="16" column="3">
-     <widget class="QLabel" name="label_11">
-      <property name="text">
-       <string>Config code</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
     </item>
@@ -280,16 +277,6 @@
       </property>
      </widget>
     </item>
-    <item row="3" column="1">
-     <widget class="QLabel" name="label_3">
-      <property name="text">
-       <string>Chip name</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-    </item>
     <item row="5" column="0">
      <widget class="QLineEdit" name="lineEdit_temp">
       <property name="sizePolicy">
@@ -297,6 +284,16 @@
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QLabel" name="label_3">
+      <property name="text">
+       <string>Chip name</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </item>
@@ -357,41 +354,6 @@
       </property>
       <property name="text">
        <string>eDRAM 2 Write</string>
-      </property>
-      <property name="icon">
-       <iconset resource="icons/icons.qrc">
-        <normaloff>:/new/prefix1/package-upgrade.svg</normaloff>:/new/prefix1/package-upgrade.svg</iconset>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>24</width>
-        <height>24</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-    <item row="22" column="2">
-     <widget class="QPushButton" name="pushButton_DUT_eDRAM1_Write">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>40</width>
-        <height>40</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>100000</width>
-        <height>40000</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>eDRAM 1 Write</string>
       </property>
       <property name="icon">
        <iconset resource="icons/icons.qrc">
@@ -514,6 +476,19 @@
       </property>
      </widget>
     </item>
+    <item row="9" column="0">
+     <widget class="QCheckBox" name="cb_b3">
+      <property name="toolTip">
+       <string>160 inv</string>
+      </property>
+      <property name="text">
+       <string>lsaen_2</string>
+      </property>
+      <property name="checked">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
     <item row="6" column="0">
      <widget class="QLabel" name="label_6">
       <property name="font">
@@ -568,13 +543,6 @@
      <widget class="QCheckBox" name="cb_b37">
       <property name="text">
        <string>strobe_4</string>
-      </property>
-     </widget>
-    </item>
-    <item row="13" column="2">
-     <widget class="QCheckBox" name="cb_b28">
-      <property name="text">
-       <string>strobe_0</string>
       </property>
      </widget>
     </item>
@@ -802,19 +770,6 @@
       </property>
      </widget>
     </item>
-    <item row="9" column="0">
-     <widget class="QCheckBox" name="cb_b3">
-      <property name="toolTip">
-       <string>160 inv</string>
-      </property>
-      <property name="text">
-       <string>lsaen_2</string>
-      </property>
-      <property name="checked">
-       <bool>false</bool>
-      </property>
-     </widget>
-    </item>
     <item row="16" column="0">
      <widget class="QCheckBox" name="cb_b10">
       <property name="text">
@@ -845,9 +800,6 @@
       </property>
      </widget>
     </item>
-    <item row="19" column="1">
-     <widget class="QLineEdit" name="lineEdit_SIPO_verifydata"/>
-    </item>
     <item row="20" column="0">
      <widget class="QLabel" name="label_13">
       <property name="text">
@@ -858,87 +810,26 @@
       </property>
      </widget>
     </item>
-    <item row="19" column="0">
-     <widget class="QLabel" name="label_12">
-      <property name="text">
-       <string>Config code confirm</string>
+    <item row="3" column="4">
+     <widget class="QPushButton" name="pushButton_app_close">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
       </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      <property name="text">
+       <string>Quit</string>
       </property>
      </widget>
     </item>
-    <item row="20" column="3">
-     <widget class="QCheckBox" name="checkBox_DUT_WriteOne">
-      <property name="toolTip">
-       <string>check for write 1 address only</string>
-      </property>
-      <property name="text">
-       <string>Write one times</string>
-      </property>
-     </widget>
-    </item>
-    <item row="20" column="1" colspan="2">
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QLineEdit" name="lineEdit_DUT_Col">
-        <property name="toolTip">
-         <string>col addr 4bit</string>
-        </property>
-        <property name="text">
-         <string>00</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="lineEdit_DUT_Row">
-        <property name="toolTip">
-         <string>row addr 8bit</string>
-        </property>
-        <property name="text">
-         <string>00</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="lineEdit_DUT_data1">
-        <property name="toolTip">
-         <string>first datapattern</string>
-        </property>
-        <property name="text">
-         <string>A5</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="lineEdit_DUT_data2">
-        <property name="toolTip">
-         <string>second datapattern</string>
-        </property>
-        <property name="text">
-         <string>5A</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item row="17" column="3">
-     <widget class="QLineEdit" name="lineEdit_SIPO_setdata"/>
-    </item>
-    <item row="19" column="2">
-     <widget class="QLabel" name="label_14">
-      <property name="text">
-       <string>Refresh time (clk cycle)</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-    </item>
-    <item row="19" column="3">
-     <widget class="QLineEdit" name="lineEdit_refeshtime">
-      <property name="text">
-       <string>0</string>
+    <item row="1" column="3" colspan="2">
+     <widget class="QPlainTextEdit" name="plainTextEdit_console">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
       </property>
      </widget>
     </item>
@@ -1022,29 +913,6 @@
       </item>
      </layout>
     </item>
-    <item row="3" column="4">
-     <widget class="QPushButton" name="pushButton_app_close">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>Quit</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="3" colspan="2">
-     <widget class="QPlainTextEdit" name="plainTextEdit_console">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-     </widget>
-    </item>
     <item row="19" column="4">
      <widget class="QLabel" name="label_RetensionER">
       <property name="text">
@@ -1052,6 +920,54 @@
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="23" column="3">
+     <widget class="QPushButton" name="pushButton">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>E2 W+R next cell</string>
+      </property>
+     </widget>
+    </item>
+    <item row="22" column="2">
+     <widget class="QPushButton" name="pushButton_DUT_eDRAM1_Write">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>40</width>
+        <height>40</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>100000</width>
+        <height>40000</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>eDRAM 1 Write</string>
+      </property>
+      <property name="icon">
+       <iconset resource="icons/icons.qrc">
+        <normaloff>:/new/prefix1/package-upgrade.svg</normaloff>:/new/prefix1/package-upgrade.svg</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>24</width>
+        <height>24</height>
+       </size>
       </property>
      </widget>
     </item>
@@ -1068,18 +984,123 @@
       </property>
      </widget>
     </item>
-    <item row="23" column="3">
-     <widget class="QPushButton" name="pushButton">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
+    <item row="18" column="0">
+     <widget class="QLabel" name="label_12">
       <property name="text">
-       <string>E2 W+R next cell</string>
+       <string>Config code confirm</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
+    </item>
+    <item row="19" column="0">
+     <widget class="QLineEdit" name="lineEdit_SIPO_verifydata"/>
+    </item>
+    <item row="19" column="1">
+     <widget class="QLineEdit" name="lineEdit_SIPO_setdata"/>
+    </item>
+    <item row="18" column="1">
+     <widget class="QLabel" name="label_11">
+      <property name="text">
+       <string>Config code</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="18" column="2">
+     <widget class="QLabel" name="label_14">
+      <property name="text">
+       <string>Refresh time (clk cycle)</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="19" column="2">
+     <widget class="QLineEdit" name="lineEdit_refeshtime">
+      <property name="text">
+       <string>0</string>
+      </property>
+     </widget>
+    </item>
+    <item row="19" column="3">
+     <widget class="QCheckBox" name="checkBox_DUT_WriteOne">
+      <property name="toolTip">
+       <string>check for write 1 address only</string>
+      </property>
+      <property name="text">
+       <string>Write one times</string>
+      </property>
+     </widget>
+    </item>
+    <item row="20" column="1" colspan="3">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLineEdit" name="lineEdit_DUT_Col">
+        <property name="toolTip">
+         <string>col addr 4bit</string>
+        </property>
+        <property name="text">
+         <string>00</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineEdit_DUT_Row">
+        <property name="toolTip">
+         <string>row addr 8bit</string>
+        </property>
+        <property name="text">
+         <string>00</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineEdit_DUT_data1">
+        <property name="toolTip">
+         <string>first datapattern</string>
+        </property>
+        <property name="text">
+         <string>A5</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineEdit_DUT_data2">
+        <property name="toolTip">
+         <string>second datapattern</string>
+        </property>
+        <property name="text">
+         <string>5A</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_5">
+        <property name="text">
+         <string>write times</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineEdit_write_times">
+        <property name="text">
+         <string>10</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox_dummy_data_pattern">
+        <property name="text">
+         <string>1 or 0</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>
