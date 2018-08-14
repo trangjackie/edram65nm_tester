@@ -67,8 +67,10 @@ private:
     bool b_array_pt[128][256];
 
     QByteArray memdata_readback;
-    int i_retension_error;
-    int i_write_error;
+    int i_retension_error_0;
+    int i_retension_error_1;
+    int i_write_error_0;
+    int i_write_error_1;
 
     char flag_kind_ER;
 

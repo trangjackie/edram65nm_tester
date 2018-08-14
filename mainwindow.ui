@@ -913,16 +913,6 @@
       </item>
      </layout>
     </item>
-    <item row="19" column="4">
-     <widget class="QLabel" name="label_RetensionER">
-      <property name="text">
-       <string>error rate</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-    </item>
     <item row="23" column="3">
      <widget class="QPushButton" name="pushButton">
       <property name="sizePolicy">
@@ -1101,6 +1091,37 @@
        </widget>
       </item>
      </layout>
+    </item>
+    <item row="14" column="3">
+     <widget class="QLabel" name="label_RetensionER0">
+      <property name="text">
+       <string>TER0</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="15" column="3">
+     <widget class="QLabel" name="label_RetensionER1">
+      <property name="text">
+       <string>TER1</string>
+      </property>
+     </widget>
+    </item>
+    <item row="16" column="3">
+     <widget class="QLabel" name="label_WriteER0">
+      <property name="text">
+       <string>WER0</string>
+      </property>
+     </widget>
+    </item>
+    <item row="17" column="3">
+     <widget class="QLabel" name="label_WriteER1">
+      <property name="text">
+       <string>WER1</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>

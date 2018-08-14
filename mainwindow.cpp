@@ -278,9 +278,13 @@ void MainWindow::uart_fpga_readData()
             raw_data->convert_data_to_image(&img,raw_data->sram_data);
             ui->label_bitmap->setPixmap(QPixmap::fromImage(img));
             int i_refeshtime = ui->lineEdit_refeshtime->text().toUInt(&ok,10);
+            int i_repeatwrite = ui->lineEdit_write_times->text().toUInt(&ok,10);
+            bool b_original = true;
+            if ((i_refeshtime+i_repeatwrite)>0) b_original = false;
+            else b_original = true;
 
             for (int x = 0; x < 16; x++) {
-                for (int y = 0; y < 256; y++) // do not compare the 255th row
+                for (int y = 0; y < 256; y++) //,
                 {
                     if ((y%2==1)){
                         cdata_pt = ui->lineEdit_DUT_data1->text().toUInt(&ok,16);
@@ -299,7 +303,7 @@ void MainWindow::uart_fpga_readData()
                     {
                         if ((cdata_org&cmask)==cmask)
                         {
-                            if (i_refeshtime == 0) {
+                            if (b_original) {
                                 b_array_org[x*8+b][y] = true;
                             } else {
                                 b_array_rb[x*8+b][y] = true;
@@ -307,7 +311,7 @@ void MainWindow::uart_fpga_readData()
                         }
                         else
                         {
-                            if (i_refeshtime == 0) {
+                            if (b_original) {
                                 b_array_org[x*8+b][y] = false;
                             } else {
                                 b_array_rb[x*8+b][y] = false;
@@ -325,30 +329,46 @@ void MainWindow::uart_fpga_readData()
 
 
             // canculate error rate
-            if (i_refeshtime == 0){
-                i_write_error = 0;
+            i_write_error_0 = 0;
+            i_write_error_1 = 0;
+            i_retension_error_0 = 0;
+            i_retension_error_1 = 0;
+            if (b_original){
+                i_write_error_0 = 0;
+                i_write_error_1 = 0;
                 for (int x = 0; x < 128; x++) {
                     for (int y = 0; y < 255; y++) // except the test SA row (255th)
                     {
                         if (b_array_org[x][y]!=b_array_pt[x][y]){
-                            i_write_error +=1;
+                            if (b_array_org[x][y]==0){
+                                i_write_error_0 +=1;
+                            }else {
+                                i_write_error_1 +=1;
+                            }
                         }
                     }
                 }
             } else {
-                i_retension_error = 0;
+                i_retension_error_0 = 0;
+                i_retension_error_1 = 0;
                 for (int x = 0; x < 128; x++) {
                     for (int y = 0; y < 256; y++) // do not compare the 255th row
                     {
                         if (b_array_org[x][y]!=b_array_rb[x][y]){
-                            i_retension_error +=1;
-                            //qDebug("error %d", i_retension_error);
+                            if (b_array_org[x][y]==0){
+                                i_retension_error_0 +=1;
+                            }else {
+                                i_retension_error_1 +=1;
+                            }
                         }
                     }
                 }
             }
             // show error number
-            ui->label_RetensionER->setText("TER/WER="+QString::number(i_retension_error,10)+"/"+QString::number(i_write_error,10));
+            ui->label_RetensionER0->setText("TER0="+QString::number(i_retension_error_0,10));
+            ui->label_RetensionER1->setText("TER1="+QString::number(i_retension_error_1,10));
+            ui->label_WriteER0->setText("WER="+QString::number(i_write_error_0,10));
+            ui->label_WriteER1->setText("WER="+QString::number(i_write_error_1,10));
         }
     }
 }
