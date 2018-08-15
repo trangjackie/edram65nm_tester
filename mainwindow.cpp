@@ -367,8 +367,8 @@ void MainWindow::uart_fpga_readData()
             // show error number
             ui->label_RetensionER0->setText("TER0="+QString::number(i_retension_error_0,10));
             ui->label_RetensionER1->setText("TER1="+QString::number(i_retension_error_1,10));
-            ui->label_WriteER0->setText("WER="+QString::number(i_write_error_0,10));
-            ui->label_WriteER1->setText("WER="+QString::number(i_write_error_1,10));
+            ui->label_WriteER0->setText("WER0="+QString::number(i_write_error_0,10));
+            ui->label_WriteER1->setText("WER1="+QString::number(i_write_error_1,10));
         }
     }
 }
