@@ -340,7 +340,7 @@ void MainWindow::uart_fpga_readData()
                     for (int y = 0; y < 255; y++) // except the test SA row (255th)
                     {
                         if (b_array_org[x][y]!=b_array_pt[x][y]){
-                            if (b_array_org[x][y]==0){
+                            if (b_array_pt[x][y]==0){
                                 i_write_error_0 +=1;
                             }else {
                                 i_write_error_1 +=1;
