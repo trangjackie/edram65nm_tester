@@ -303,19 +303,21 @@ void MainWindow::uart_fpga_readData()
                     {
                         if ((cdata_org&cmask)==cmask)
                         {
-                            if (b_original) {
-                                b_array_org[x*8+b][y] = true;
-                            } else {
-                                b_array_rb[x*8+b][y] = true;
-                            }
+//                            if (b_original) {
+//                                b_array_org[x*8+b][y] = true;
+//                            } else {
+//                                b_array_rb[x*8+b][y] = true;
+//                            }
+                             b_array_rb[x*8+b][y] = true;
                         }
                         else
                         {
-                            if (b_original) {
-                                b_array_org[x*8+b][y] = false;
-                            } else {
-                                b_array_rb[x*8+b][y] = false;
-                            }
+//                            if (b_original) {
+//                                b_array_org[x*8+b][y] = false;
+//                            } else {
+//                                b_array_rb[x*8+b][y] = false;
+//                            }
+                            b_array_rb[x*8+b][y] = false;
                         }
                         if ((cdata_pt&cmask)==cmask){
                             b_array_pt[x*8+b][y] = true;
@@ -339,7 +341,7 @@ void MainWindow::uart_fpga_readData()
                 for (int x = 0; x < 128; x++) {
                     for (int y = 0; y < 255; y++) // except the test SA row (255th)
                     {
-                        if (b_array_org[x][y]!=b_array_pt[x][y]){
+                        if (b_array_rb[x][y]!=b_array_pt[x][y]){
                             if (b_array_pt[x][y]==0){
                                 i_write_error_0 +=1;
                             }else {
@@ -352,10 +354,10 @@ void MainWindow::uart_fpga_readData()
                 i_retension_error_0 = 0;
                 i_retension_error_1 = 0;
                 for (int x = 0; x < 128; x++) {
-                    for (int y = 0; y < 256; y++) // do not compare the 255th row
+                    for (int y = 0; y < 255; y++) // do not compare the 255th row
                     {
-                        if (b_array_org[x][y]!=b_array_rb[x][y]){
-                            if (b_array_org[x][y]==0){
+                        if (b_array_pt[x][y]!=b_array_rb[x][y]){
+                            if (b_array_pt[x][y]==0){
                                 i_retension_error_0 +=1;
                             }else {
                                 i_retension_error_1 +=1;
