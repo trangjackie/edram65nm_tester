@@ -20,6 +20,14 @@ MainWindow::MainWindow(QWidget *parent) :
             SLOT(uart_fpga_handleError(QSerialPort::SerialPortError)));
     connect(uart_fpga, SIGNAL(readyRead()), this, SLOT(uart_fpga_readData()));
 
+    // UART FPGA
+    uart_power_setting = new SettingsDialog;
+    uart_power_setting->setdefault(1,0);
+    uart_power = new QSerialPort(this);
+    connect(uart_power, SIGNAL(error(QSerialPort::SerialPortError)), this,
+            SLOT(uart_power_handleError(QSerialPort::SerialPortError)));
+    connect(uart_power, SIGNAL(readyRead()), this, SLOT(uart_power_readData()));
+
     // Timer for TID auto test
         timer_tid = new QTimer();
         //connect(timer_tid, SIGNAL(timeout()), this, SLOT(tid_check()));
@@ -724,4 +732,126 @@ void MainWindow::on_pushButton_clicked()
     payload[11]= nRepeat;
     qDebug("payload "+ payload.toHex());
     uart_fpga_writeData(payload);
+}
+
+void MainWindow::on_pushButton_HVDD_clicked()
+{
+    double vdd;
+    QString str;
+    vdd = ui->lineEdit_HVDD->text().toDouble();
+    if (vdd > 2.5){
+        vdd = 2.5;
+    } else if (vdd<0){
+        vdd = 0;
+    }
+    str = "VSET1:"+QString::number(vdd,'f',3)+"\n";
+    uart_power_writeData(str.toLocal8Bit());
+}
+
+void MainWindow::on_pushButton_NVSS_clicked()
+{
+    double vdd;
+    QString str;
+    vdd = ui->lineEdit_NVSS->text().toDouble();
+    if (vdd<0) {
+       vdd = -vdd;
+    }
+    if (vdd > 1.5){
+        vdd = 1.5;
+    }
+    str = "VSET2:"+QString::number(vdd,'f',3)+"\n";
+    uart_power_writeData(str.toLocal8Bit());
+}
+
+void MainWindow::on_pushButton_power_on_clicked()
+{
+    QString str = "OUT1\n"; // output  on
+    uart_power_writeData(str.toLocal8Bit());
+    ui->pushButton_power_on->setEnabled(false);
+    ui->pushButton_power_off->setEnabled(true);
+}
+
+void MainWindow::on_pushButton_power_off_clicked()
+{
+    QString str = "OUT0\n"; // output  off
+    uart_power_writeData(str.toLocal8Bit());
+    ui->pushButton_power_on->setEnabled(true);
+    ui->pushButton_power_off->setEnabled(false);
+}
+
+void MainWindow::on_pushButton_uart_power_setting_clicked()
+{
+    uart_power_setting->show();
+}
+
+void MainWindow::on_pushButton_uart_power_connect_clicked()
+{
+    if (ui->pushButton_uart_power_connect->text()=="Connect") // have not connected
+    {
+        SettingsDialog::Settings p = uart_power_setting->settings();
+        uart_power->setPortName(p.name);
+        uart_power->setBaudRate(p.baudRate);
+        uart_power->setDataBits(p.dataBits);
+        uart_power->setParity(p.parity);
+        uart_power->setStopBits(p.stopBits);
+        uart_power->setFlowControl(p.flowControl);
+        if (uart_power->open(QIODevice::ReadWrite)) {
+            ui->pushButton_uart_power_connect->setToolTip("Click to disconnect UART.");
+            ui->pushButton_uart_power_connect->setText("Disconnect");
+            ui->pushButton_uart_power_setting->setEnabled(false);
+            ui->statusBar->showMessage(QString("Connected to %1 : %2, %3, %4, %5, %6")
+                              .arg(p.name).arg(p.stringBaudRate).arg(p.stringDataBits)
+                              .arg(p.stringParity).arg(p.stringStopBits).arg(p.stringFlowControl));
+        } else {
+            QMessageBox::critical(this, tr("Error"), uart_power->errorString());
+            ui->statusBar->showMessage("Open error");
+        }
+    }
+    else // connected already
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Disconnect serial port");
+        msgBox.setInformativeText("Are you sure?");
+        msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::Cancel);
+        msgBox.setDefaultButton(QMessageBox::Cancel);
+        int ret = msgBox.exec();
+        switch (ret) {
+          case QMessageBox::Yes:
+            // Yes was clicked--> disconnect
+            if (uart_power->isOpen())
+                uart_power->close();
+            //console->setEnabled(false);
+            ui->pushButton_uart_power_connect->setText("Connect");
+            ui->pushButton_uart_power_connect->setToolTip("Click to connect UART.");
+            ui->pushButton_uart_power_setting->setEnabled(true);
+            ui->statusBar->showMessage("UART power disconnected");
+              break;
+          case QMessageBox::Cancel:
+            // Cancel was clicked
+            break;
+          default:
+            // should never be reached
+            break;
+        }
+    }
+}
+
+void MainWindow::uart_power_readData()
+{
+    uart_power_rxdata = uart_fpga->readAll();
+    qDebug("Data successfully received from port "+uart_power->portName().toLatin1());
+    ui->plainTextEdit_console->clear();
+    ui->plainTextEdit_console->insertPlainText(QString(uart_power_rxdata));
+}
+
+void MainWindow::uart_power_writeData(const QByteArray &data)
+{
+    uart_power->write(data);
+}
+
+void MainWindow::uart_power_handleError(QSerialPort::SerialPortError error)
+{
+    if (error == QSerialPort::ResourceError) {
+    QMessageBox::critical(this, QString("Critical Error"), uart_power->errorString());
+    }
 }

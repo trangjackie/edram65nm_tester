@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1026</width>
-    <height>731</height>
+    <height>748</height>
    </rect>
   </property>
   <property name="font">
@@ -159,7 +159,7 @@
     <item row="1" column="2">
      <layout class="QGridLayout" name="gridLayout_3">
       <item row="1" column="1">
-       <widget class="QPushButton" name="pushButton_VDD_core_update">
+       <widget class="QPushButton" name="pushButton_HVDD">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
           <horstretch>0</horstretch>
@@ -167,22 +167,12 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>VDD core (CH1)</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QLineEdit" name="lineEdit_VDD_core">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
+         <string>HVDD (CH1)</string>
         </property>
        </widget>
       </item>
       <item row="1" column="2">
-       <widget class="QPushButton" name="pushButton_VDD_IO">
+       <widget class="QPushButton" name="pushButton_NVSS">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
           <horstretch>0</horstretch>
@@ -190,17 +180,50 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>VDD IO (CH2)</string>
+         <string>NVSS(CH2)</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="2">
-       <widget class="QLineEdit" name="lineEdit_VDD_IO">
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="lineEdit_HVDD">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="text">
+         <string>1.2</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLineEdit" name="lineEdit_NVSS">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>0</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QPushButton" name="pushButton_power_on">
+        <property name="text">
+         <string>DC ON</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QPushButton" name="pushButton_power_off">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>DC OFF</string>
         </property>
        </widget>
       </item>

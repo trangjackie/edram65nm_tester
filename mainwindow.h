@@ -35,6 +35,9 @@ private slots:
 
     void uart_fpga_handleError(QSerialPort::SerialPortError error);
 
+    void uart_power_readData();
+
+    void uart_power_handleError(QSerialPort::SerialPortError error);
 
     void onSIPOCheckbox_change();
 
@@ -55,10 +58,25 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_pushButton_HVDD_clicked();
+
+    void on_pushButton_NVSS_clicked();
+
+    void on_pushButton_power_on_clicked();
+
+    void on_pushButton_power_off_clicked();
+
+    void on_pushButton_uart_power_setting_clicked();
+
+    void on_pushButton_uart_power_connect_clicked();
+
 private:
     Ui::MainWindow *ui;
     SettingsDialog *uart_fpga_setting;
     QSerialPort *uart_fpga;
+    SettingsDialog *uart_power_setting;
+    QSerialPort *uart_power;
+    QByteArray uart_power_rxdata;
     dut_data *raw_data;
     QBitArray *ba_SIPO_setdata;
 
@@ -79,6 +97,7 @@ private:
     QTimer *timer_tid;
 
     void uart_fpga_writeData(const QByteArray &data);
+     void uart_power_writeData(const QByteArray &data);
     void radiobutton_block_select_setup();
 
     void write_report(QString str_data);
