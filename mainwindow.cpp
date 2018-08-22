@@ -545,13 +545,16 @@ void MainWindow::on_pushButton_DUT_eDRAM1_Write_clicked()
     QString str_col = ui->lineEdit_DUT_Col->text();
     QString str_row = ui->lineEdit_DUT_Row->text();
     QString str_refesh = ui->lineEdit_refeshtime->text();
+    QString str_write_repeat = ui->lineEdit_write_repeat->text();
     bool bStatus = false;
     uint nCol = str_col.toUInt(&bStatus,16);
     uint nRow = str_row.toUInt(&bStatus,16);
     uint nData1 = str_data1.toUInt(&bStatus,16);
     uint nData2 = str_data2.toUInt(&bStatus,16);
     uint nRefesh = str_refesh.toUInt(&bStatus,10);
+    uint nWriterepeat = str_write_repeat.toUInt(&bStatus,10);
     QByteArray baRefesh;
+    QByteArray baWriterepeat;
 
     baRefesh[0]=nRefesh;
     baRefesh[1]=nRefesh>>8;
@@ -559,14 +562,36 @@ void MainWindow::on_pushButton_DUT_eDRAM1_Write_clicked()
     baRefesh[3]=nRefesh>>24;
     qDebug("refesh "+baRefesh);
     qDebug("number %d",nRefesh);
-    payload.resize(12);
+
+    baWriterepeat[0] = nWriterepeat;
+    baWriterepeat[1] = nWriterepeat>>8;
+    baWriterepeat[2] = nWriterepeat>>16;
+    baWriterepeat[3] = nWriterepeat>>24;
+
+    payload.resize(16);
     payload.fill(0);
-    payload[0]=12;
+    payload[0]=16;
     payload[1]=FPGA_E1_WRITE;
     if (ui->checkBox_DUT_WriteOne->isChecked()){
         payload[2] = 1;
     } else {
         payload[2] = 0;
+    }
+
+    if (ui->checkBox_Readrepeat->isChecked()){
+        char mask = 1;
+        mask = mask << 2;
+        payload[2] = payload[2]|mask;
+    }
+    if (ui->checkBox_Writerepeat->isChecked()){
+        char mask = 1;
+        mask = mask << 3;
+        payload[2] = payload[2]|mask;
+    }
+    if (ui->checkBox_Allrepeat->isChecked()){
+        char mask = 1;
+        mask = mask << 4;
+        payload[2] = payload[2]|mask;
     }
     payload[3]= nCol; // col addr 4bit
     payload[4]= nRow;
@@ -577,6 +602,9 @@ void MainWindow::on_pushButton_DUT_eDRAM1_Write_clicked()
         payload[7+i] = baRefesh[baRefesh.size()-i-1];
     }
     payload[11]= 0;
+    for (int i=0;i<baWriterepeat.size();i++){
+        payload[12+i] = baWriterepeat[baWriterepeat.size()-i-1];
+    }
     qDebug("payload "+ payload.toHex());
     uart_fpga_writeData(payload);
 }
@@ -589,13 +617,16 @@ void MainWindow::on_pushButton_DUT_eDRAM2_Write_clicked()
     QString str_col = ui->lineEdit_DUT_Col->text();
     QString str_row = ui->lineEdit_DUT_Row->text();
     QString str_refesh = ui->lineEdit_refeshtime->text();
+    QString str_write_repeat = ui->lineEdit_write_repeat->text();
     bool bStatus = false;
     uint nCol = str_col.toUInt(&bStatus,16);
     uint nRow = str_row.toUInt(&bStatus,16);
     uint nData1 = str_data1.toUInt(&bStatus,16);
     uint nData2 = str_data2.toUInt(&bStatus,16);
     uint nRefesh = str_refesh.toUInt(&bStatus,10);
+    uint nWriterepeat = str_write_repeat.toUInt(&bStatus,10);
     QByteArray baRefesh;
+    QByteArray baWriterepeat;
 
     baRefesh[0]=nRefesh;
     baRefesh[1]=nRefesh>>8;
@@ -603,14 +634,35 @@ void MainWindow::on_pushButton_DUT_eDRAM2_Write_clicked()
     baRefesh[3]=nRefesh>>24;
     qDebug("refesh "+baRefesh);
     qDebug("number %d",nRefesh);
-    payload.resize(12);
+
+    baWriterepeat[0] = nWriterepeat;
+    baWriterepeat[1] = nWriterepeat>>8;
+    baWriterepeat[2] = nWriterepeat>>16;
+    baWriterepeat[3] = nWriterepeat>>24;
+
+    payload.resize(16);
     payload.fill(0);
-    payload[0]=12;
+    payload[0]=16;
     payload[1]=FPGA_E2_WRITE;
     if (ui->checkBox_DUT_WriteOne->isChecked()){
         payload[2] = 1;
     } else {
         payload[2] = 0;
+    }
+    if (ui->checkBox_Readrepeat->isChecked()){
+        char mask = 1;
+        mask = mask << 2;
+        payload[2] = payload[2]|mask;
+    }
+    if (ui->checkBox_Writerepeat->isChecked()){
+        char mask = 1;
+        mask = mask << 3;
+        payload[2] = payload[2]|mask;
+    }
+    if (ui->checkBox_Allrepeat->isChecked()){
+        char mask = 1;
+        mask = mask << 4;
+        payload[2] = payload[2]|mask;
     }
     payload[3]= nCol; // col addr 4bit
     payload[4]= nRow;
@@ -621,6 +673,9 @@ void MainWindow::on_pushButton_DUT_eDRAM2_Write_clicked()
         payload[7+i] = baRefesh[baRefesh.size()-i-1];
     }
     payload[11]= 0;
+    for (int i=0;i<baWriterepeat.size();i++){
+        payload[12+i] = baWriterepeat[baWriterepeat.size()-i-1];
+    }
     qDebug("payload "+ payload.toHex());
     uart_fpga_writeData(payload);
 }
@@ -634,6 +689,7 @@ void MainWindow::on_pushButton_DUT_eDRAM1_WriteReadNextCell_clicked()
     QString str_row = ui->lineEdit_DUT_Row->text();
     QString str_refesh = ui->lineEdit_refeshtime->text();
     QString str_repeat = ui->lineEdit_write_times->text();
+    QString str_write_repeat = ui->lineEdit_write_repeat->text();
     bool bStatus = false;
     uint nCol = str_col.toUInt(&bStatus,16);
     uint nRow = str_row.toUInt(&bStatus,16);
@@ -641,7 +697,9 @@ void MainWindow::on_pushButton_DUT_eDRAM1_WriteReadNextCell_clicked()
     uint nData2 = str_data2.toUInt(&bStatus,16);
     uint nRefesh = str_refesh.toUInt(&bStatus,10);
     uint nRepeat = str_repeat.toUInt(&bStatus,10);
+    uint nWriterepeat = str_write_repeat.toUInt(&bStatus,10);
     QByteArray baRefesh;
+    QByteArray baWriterepeat;
 
     baRefesh[0]=nRefesh;
     baRefesh[1]=nRefesh>>8;
@@ -649,9 +707,14 @@ void MainWindow::on_pushButton_DUT_eDRAM1_WriteReadNextCell_clicked()
     baRefesh[3]=nRefesh>>24;
     qDebug("refesh "+baRefesh);
     qDebug("number %d",nRefesh);
-    payload.resize(12);
+    baWriterepeat[0] = nWriterepeat;
+    baWriterepeat[1] = nWriterepeat>>8;
+    baWriterepeat[2] = nWriterepeat>>16;
+    baWriterepeat[3] = nWriterepeat>>24;
+
+    payload.resize(16);
     payload.fill(0);
-    payload[0]=12;
+    payload[0]=16;
     payload[1]=FPGA_E1_WRITE;
     if (ui->checkBox_dummy_data_pattern->isChecked()){
         if (ui->checkBox_DUT_WriteOne->isChecked()){
@@ -666,7 +729,21 @@ void MainWindow::on_pushButton_DUT_eDRAM1_WriteReadNextCell_clicked()
             payload[2] = 0; // 8b 0000 0000
         }
     }
-
+    if (ui->checkBox_Readrepeat->isChecked()){
+        char mask = 1;
+        mask = mask << 2;
+        payload[2] = payload[2]|mask;
+    }
+    if (ui->checkBox_Writerepeat->isChecked()){
+        char mask = 1;
+        mask = mask << 3;
+        payload[2] = payload[2]|mask;
+    }
+    if (ui->checkBox_Allrepeat->isChecked()){
+        char mask = 1;
+        mask = mask << 4;
+        payload[2] = payload[2]|mask;
+    }
     payload[3]= nCol; // col addr 4bit
     payload[4]= nRow;
     payload[5]= nData1;
@@ -676,6 +753,9 @@ void MainWindow::on_pushButton_DUT_eDRAM1_WriteReadNextCell_clicked()
         payload[7+i] = baRefesh[baRefesh.size()-i-1];
     }
     payload[11]= nRepeat;
+    for (int i=0;i<baWriterepeat.size();i++){
+        payload[12+i] = baWriterepeat[baWriterepeat.size()-i-1];
+    }
     qDebug("payload "+ payload.toHex());
     uart_fpga_writeData(payload);
 }
@@ -689,6 +769,7 @@ void MainWindow::on_pushButton_clicked()
     QString str_row = ui->lineEdit_DUT_Row->text();
     QString str_refesh = ui->lineEdit_refeshtime->text();
     QString str_repeat = ui->lineEdit_write_times->text();
+    QString str_write_repeat = ui->lineEdit_write_repeat->text();
     bool bStatus = false;
     uint nCol = str_col.toUInt(&bStatus,16);
     uint nRow = str_row.toUInt(&bStatus,16);
@@ -696,7 +777,9 @@ void MainWindow::on_pushButton_clicked()
     uint nData2 = str_data2.toUInt(&bStatus,16);
     uint nRefesh = str_refesh.toUInt(&bStatus,10);
     uint nRepeat = str_repeat.toUInt(&bStatus,10);
+    uint nWriterepeat = str_write_repeat.toUInt(&bStatus,10);
     QByteArray baRefesh;
+    QByteArray baWriterepeat;
 
     baRefesh[0]=nRefesh;
     baRefesh[1]=nRefesh>>8;
@@ -704,9 +787,13 @@ void MainWindow::on_pushButton_clicked()
     baRefesh[3]=nRefesh>>24;
     qDebug("refesh "+baRefesh);
     qDebug("number %d",nRefesh);
-    payload.resize(12);
+    baWriterepeat[0] = nWriterepeat;
+    baWriterepeat[1] = nWriterepeat>>8;
+    baWriterepeat[2] = nWriterepeat>>16;
+    baWriterepeat[3] = nWriterepeat>>24;
+    payload.resize(16);
     payload.fill(0);
-    payload[0]=12;
+    payload[0]=16;
     payload[1]=FPGA_E2_WRITE;
     if (ui->checkBox_dummy_data_pattern->isChecked()){
         if (ui->checkBox_DUT_WriteOne->isChecked()){
@@ -721,6 +808,21 @@ void MainWindow::on_pushButton_clicked()
             payload[2] = 0; // 8b 0000 0000
         }
     }
+    if (ui->checkBox_Readrepeat->isChecked()){
+        char mask = 1;
+        mask = mask << 2;
+        payload[2] = payload[2]|mask;
+    }
+    if (ui->checkBox_Writerepeat->isChecked()){
+        char mask = 1;
+        mask = mask << 3;
+        payload[2] = payload[2]|mask;
+    }
+    if (ui->checkBox_Allrepeat->isChecked()){
+        char mask = 1;
+        mask = mask << 4;
+        payload[2] = payload[2]|mask;
+    }
     payload[3]= nCol; // col addr 4bit
     payload[4]= nRow;
     payload[5]= nData1;
@@ -730,6 +832,9 @@ void MainWindow::on_pushButton_clicked()
         payload[7+i] = baRefesh[baRefesh.size()-i-1];
     }
     payload[11]= nRepeat;
+    for (int i=0;i<baWriterepeat.size();i++){
+        payload[12+i] = baWriterepeat[baWriterepeat.size()-i-1];
+    }
     qDebug("payload "+ payload.toHex());
     uart_fpga_writeData(payload);
 }
@@ -854,4 +959,9 @@ void MainWindow::uart_power_handleError(QSerialPort::SerialPortError error)
     if (error == QSerialPort::ResourceError) {
     QMessageBox::critical(this, QString("Critical Error"), uart_power->errorString());
     }
+}
+
+void MainWindow::on_lineEdit_write_repeat_editingFinished()
+{
+
 }

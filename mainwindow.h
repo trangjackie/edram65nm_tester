@@ -70,6 +70,8 @@ private slots:
 
     void on_pushButton_uart_power_connect_clicked();
 
+    void on_lineEdit_write_repeat_editingFinished();
+
 private:
     Ui::MainWindow *ui;
     SettingsDialog *uart_fpga_setting;
