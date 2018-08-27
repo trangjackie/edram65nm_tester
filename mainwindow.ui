@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1065</width>
-    <height>760</height>
+    <height>783</height>
    </rect>
   </property>
   <property name="font">
@@ -121,41 +121,6 @@
       </property>
      </widget>
     </item>
-    <item row="24" column="0">
-     <widget class="QPushButton" name="pushButton_TestChar">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>40</width>
-        <height>40</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>100000</width>
-        <height>40000</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>Send test char</string>
-      </property>
-      <property name="icon">
-       <iconset resource="icons/icons.qrc">
-        <normaloff>:/new/prefix1/package-upgrade.svg</normaloff>:/new/prefix1/package-upgrade.svg</iconset>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>24</width>
-        <height>24</height>
-       </size>
-      </property>
-     </widget>
-    </item>
     <item row="1" column="2">
      <layout class="QGridLayout" name="gridLayout_3">
       <item row="1" column="1">
@@ -265,41 +230,6 @@
       </item>
      </layout>
     </item>
-    <item row="23" column="1">
-     <widget class="QPushButton" name="pushButton_DUT_S12_Write">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>40</width>
-        <height>40</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>1000000</width>
-        <height>40000</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>S12 Write</string>
-      </property>
-      <property name="icon">
-       <iconset resource="icons/icons.qrc">
-        <normaloff>:/new/prefix1/package-upgrade.svg</normaloff>:/new/prefix1/package-upgrade.svg</iconset>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>24</width>
-        <height>24</height>
-       </size>
-      </property>
-     </widget>
-    </item>
     <item row="5" column="0">
      <widget class="QLineEdit" name="lineEdit_temp">
       <property name="sizePolicy">
@@ -320,76 +250,6 @@
       </property>
      </widget>
     </item>
-    <item row="23" column="0">
-     <widget class="QPushButton" name="pushButton_DUT_SIPO_set">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>40</width>
-        <height>40</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>100000</width>
-        <height>40000</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>set SIPO</string>
-      </property>
-      <property name="icon">
-       <iconset resource="icons/icons.qrc">
-        <normaloff>:/new/prefix1/package-upgrade.svg</normaloff>:/new/prefix1/package-upgrade.svg</iconset>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>24</width>
-        <height>24</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-    <item row="24" column="2">
-     <widget class="QPushButton" name="pushButton_DUT_eDRAM2_Write">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>40</width>
-        <height>40</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>100000</width>
-        <height>40000</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>eDRAM 2 Write</string>
-      </property>
-      <property name="icon">
-       <iconset resource="icons/icons.qrc">
-        <normaloff>:/new/prefix1/package-upgrade.svg</normaloff>:/new/prefix1/package-upgrade.svg</iconset>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>24</width>
-        <height>24</height>
-       </size>
-      </property>
-     </widget>
-    </item>
     <item row="3" column="0">
      <widget class="QLabel" name="label_4">
       <property name="text">
@@ -397,41 +257,6 @@
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-    </item>
-    <item row="24" column="1">
-     <widget class="QPushButton" name="pushButton_DUT_S12_Read">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>40</width>
-        <height>40</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>100000</width>
-        <height>40000</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>S12 Read</string>
-      </property>
-      <property name="icon">
-       <iconset resource="icons/icons.qrc">
-        <normaloff>:/new/prefix1/package-downgrade.svg</normaloff>:/new/prefix1/package-downgrade.svg</iconset>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>24</width>
-        <height>24</height>
-       </size>
       </property>
      </widget>
     </item>
@@ -545,6 +370,16 @@
       </property>
      </widget>
     </item>
+    <item row="1" column="3" colspan="2">
+     <widget class="QPlainTextEdit" name="plainTextEdit_console">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
+    </item>
     <item row="7" column="2">
      <widget class="QCheckBox" name="cb_b23">
       <property name="text">
@@ -590,6 +425,9 @@
       <property name="text">
        <string>lsaen_0</string>
       </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
      </widget>
     </item>
     <item row="6" column="3">
@@ -614,7 +452,7 @@
        <string>lsaen_1</string>
       </property>
       <property name="checked">
-       <bool>true</bool>
+       <bool>false</bool>
       </property>
      </widget>
     </item>
@@ -772,7 +610,7 @@
        <string>lsaen_1</string>
       </property>
       <property name="checked">
-       <bool>true</bool>
+       <bool>false</bool>
       </property>
      </widget>
     </item>
@@ -811,6 +649,9 @@
       <property name="text">
        <string>lsaen_0 (short)</string>
       </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
      </widget>
     </item>
     <item row="3" column="4">
@@ -833,16 +674,6 @@
       </property>
       <property name="checked">
        <bool>false</bool>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="3" colspan="2">
-     <widget class="QPlainTextEdit" name="plainTextEdit_console">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
       </property>
      </widget>
     </item>
@@ -936,72 +767,18 @@
       </item>
      </layout>
     </item>
-    <item row="24" column="3">
-     <widget class="QPushButton" name="pushButton">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>E2 W+R next cell</string>
-      </property>
-     </widget>
-    </item>
-    <item row="23" column="2">
-     <widget class="QPushButton" name="pushButton_DUT_eDRAM1_Write">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>40</width>
-        <height>40</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>100000</width>
-        <height>40000</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>eDRAM 1 Write</string>
-      </property>
-      <property name="icon">
-       <iconset resource="icons/icons.qrc">
-        <normaloff>:/new/prefix1/package-upgrade.svg</normaloff>:/new/prefix1/package-upgrade.svg</iconset>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>24</width>
-        <height>24</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-    <item row="23" column="3">
-     <widget class="QPushButton" name="pushButton_DUT_eDRAM1_WriteReadNextCell">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>E1 W+R next cell</string>
-      </property>
-     </widget>
-    </item>
     <item row="19" column="1">
      <widget class="QLineEdit" name="lineEdit_SIPO_setdata"/>
     </item>
     <item row="19" column="0">
      <widget class="QLineEdit" name="lineEdit_SIPO_verifydata"/>
+    </item>
+    <item row="15" column="3">
+     <widget class="QLabel" name="label_RetensionER1">
+      <property name="text">
+       <string>TER1</string>
+      </property>
+     </widget>
     </item>
     <item row="18" column="0">
      <widget class="QLabel" name="label_12">
@@ -1023,10 +800,10 @@
       </property>
      </widget>
     </item>
-    <item row="15" column="3">
-     <widget class="QLabel" name="label_RetensionER1">
+    <item row="16" column="3">
+     <widget class="QLabel" name="label_WriteER0">
       <property name="text">
-       <string>TER1</string>
+       <string>WER0</string>
       </property>
      </widget>
     </item>
@@ -1036,7 +813,7 @@
        <string>check for write 1 address only</string>
       </property>
       <property name="text">
-       <string>Write one times</string>
+       <string>Write one addr</string>
       </property>
      </widget>
     </item>
@@ -1105,10 +882,10 @@
       </item>
      </layout>
     </item>
-    <item row="16" column="3">
-     <widget class="QLabel" name="label_WriteER0">
+    <item row="17" column="3">
+     <widget class="QLabel" name="label_WriteER1">
       <property name="text">
-       <string>WER0</string>
+       <string>WER1</string>
       </property>
      </widget>
     </item>
@@ -1119,13 +896,6 @@
       </property>
       <property name="alignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-    </item>
-    <item row="17" column="3">
-     <widget class="QLabel" name="label_WriteER1">
-      <property name="text">
-       <string>WER1</string>
       </property>
      </widget>
     </item>
@@ -1188,6 +958,275 @@
        <widget class="QCheckBox" name="checkBox_Allrepeat">
         <property name="text">
          <string>50-50</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="22" column="0" rowspan="3" colspan="5">
+     <layout class="QGridLayout" name="gridLayout_4">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetDefaultConstraint</enum>
+      </property>
+      <item row="0" column="4">
+       <widget class="QPushButton" name="pushButton_DUT_eDRAM1_WriteReadNextCell">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>E1 W+R next cell</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QPushButton" name="pushButton_DUT_eDRAM1_Write">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>40</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>100000</width>
+          <height>40000</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>eDRAM 1 Write</string>
+        </property>
+        <property name="icon">
+         <iconset resource="icons/icons.qrc">
+          <normaloff>:/new/prefix1/package-upgrade.svg</normaloff>:/new/prefix1/package-upgrade.svg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="4">
+       <widget class="QPushButton" name="pushButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>E2 W+R next cell</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QPushButton" name="pushButton_DUT_S12_Read">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>40</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>100000</width>
+          <height>40000</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>S12 Read</string>
+        </property>
+        <property name="icon">
+         <iconset resource="icons/icons.qrc">
+          <normaloff>:/new/prefix1/package-downgrade.svg</normaloff>:/new/prefix1/package-downgrade.svg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QPushButton" name="pushButton_DUT_SIPO_set">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>40</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>100000</width>
+          <height>40000</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>set SIPO</string>
+        </property>
+        <property name="icon">
+         <iconset resource="icons/icons.qrc">
+          <normaloff>:/new/prefix1/package-upgrade.svg</normaloff>:/new/prefix1/package-upgrade.svg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QPushButton" name="pushButton_TestChar">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>40</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>100000</width>
+          <height>40000</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Send test char</string>
+        </property>
+        <property name="icon">
+         <iconset resource="icons/icons.qrc">
+          <normaloff>:/new/prefix1/package-upgrade.svg</normaloff>:/new/prefix1/package-upgrade.svg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QPushButton" name="pushButton_DUT_S12_Write">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>40</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>1000000</width>
+          <height>40000</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>S12 Write</string>
+        </property>
+        <property name="icon">
+         <iconset resource="icons/icons.qrc">
+          <normaloff>:/new/prefix1/package-upgrade.svg</normaloff>:/new/prefix1/package-upgrade.svg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QPushButton" name="pushButton_DUT_eDRAM2_Write">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>40</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>100000</width>
+          <height>40000</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>eDRAM 2 Write</string>
+        </property>
+        <property name="icon">
+         <iconset resource="icons/icons.qrc">
+          <normaloff>:/new/prefix1/package-upgrade.svg</normaloff>:/new/prefix1/package-upgrade.svg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QPushButton" name="pushButton_DUT_S6_Write">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>S6 Write</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QPushButton" name="pushButton_DUT_S6_Read">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>S6 Read</string>
         </property>
        </widget>
       </item>

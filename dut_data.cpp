@@ -41,6 +41,10 @@ char dut_data::data_classify()
         sram_data->append(raw_data->mid(1,raw_data->length()-1));
         data_avarible = true;
         ret = FPGA_E1_WRITE;
+    } else if (raw_data->at(0) == FPGA_S6_READ) {
+        sram_data->append(raw_data->mid(1,raw_data->length()-1));
+        data_avarible = true;
+        ret = FPGA_S6_READ;
     }
 
     return ret;

@@ -13,6 +13,8 @@
 #define FPGA_S12_WRITE 'A'
 #define FPGA_E2_WRITE 'E'
 #define FPGA_E1_WRITE 'F'
+#define FPGA_S6_READ 'G'
+#define FPGA_S6_WRITE 'C'
 
 class dut_data
 {

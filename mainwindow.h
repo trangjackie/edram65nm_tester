@@ -72,6 +72,10 @@ private slots:
 
     void on_lineEdit_write_repeat_editingFinished();
 
+    void on_pushButton_DUT_S6_Write_clicked();
+
+    void on_pushButton_DUT_S6_Read_clicked();
+
 private:
     Ui::MainWindow *ui;
     SettingsDialog *uart_fpga_setting;
