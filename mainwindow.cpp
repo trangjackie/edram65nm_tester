@@ -244,6 +244,7 @@ void MainWindow::on_pushButton_uart_fpga_connect_clicked()
 void MainWindow::uart_fpga_readData()
 {
     char cdata_org, cdata_rb ,cmask, cdata_pt;
+    uint data_pt;
     bool b_cell_org, b_cell_rb;
     char type_data;
     bool ok = true;
@@ -277,9 +278,7 @@ void MainWindow::uart_fpga_readData()
     }
     if ((type_data == FPGA_S12_READ)
             |(type_data == FPGA_S6_READ)
-            |(type_data == FPGA_SEND_TEST_CHAR)
-            |(type_data == FPGA_E2_WRITE)
-            |(type_data == FPGA_E1_WRITE)){
+            |(type_data == FPGA_SEND_TEST_CHAR)){
         if (raw_data->data_avarible)
         {
             QImage img(128, 256, QImage::Format_RGB888);
@@ -296,9 +295,11 @@ void MainWindow::uart_fpga_readData()
                 for (int y = 0; y < 256; y++) //,
                 {
                     if ((y%2==1)){
-                        cdata_pt = ui->lineEdit_DUT_data1->text().toUInt(&ok,16);
+                        data_pt = ui->lineEdit_DUT_data1->text().toUInt(&ok,16);
+                        cdata_pt = (char)data_pt;
                     } else {
-                        cdata_pt = ui->lineEdit_DUT_data2->text().toUInt(&ok,16);
+                        data_pt = ui->lineEdit_DUT_data2->text().toUInt(&ok,16);
+                        cdata_pt = (char)data_pt;
                     }
                     if ((x*256+y)<=(raw_data->sram_data->size()-1)){
                         cdata_org = raw_data->sram_data->at(x*256+y);
@@ -310,28 +311,16 @@ void MainWindow::uart_fpga_readData()
                     cmask = 0x01;
                     for (int b = 0; b<8;b++)
                     {
-                        if ((cdata_org&cmask)==cmask)
-                        {
-//                            if (b_original) {
-//                                b_array_org[x*8+b][y] = true;
-//                            } else {
-//                                b_array_rb[x*8+b][y] = true;
-//                            }
-                             b_array_rb[x*8+b][y] = true;
+                        if ((cdata_org&cmask)==cmask){
+                             b_array_rb[16*b+x][y] = true;
                         }
-                        else
-                        {
-//                            if (b_original) {
-//                                b_array_org[x*8+b][y] = false;
-//                            } else {
-//                                b_array_rb[x*8+b][y] = false;
-//                            }
-                            b_array_rb[x*8+b][y] = false;
+                        else{
+                            b_array_rb[16*b+x][y] = false;
                         }
                         if ((cdata_pt&cmask)==cmask){
-                            b_array_pt[x*8+b][y] = true;
+                            b_array_pt[16*b+x][y] = true;
                         } else {
-                            b_array_pt[x*8+b][y] = false;
+                            b_array_pt[16*b+x][y] = false;
                         }
                         cmask = cmask<<1;
                     }
@@ -339,7 +328,7 @@ void MainWindow::uart_fpga_readData()
             }
 
 
-            // canculate error rate
+            // calculate error rate
             i_write_error_0 = 0;
             i_write_error_1 = 0;
             i_retension_error_0 = 0;
@@ -382,6 +371,103 @@ void MainWindow::uart_fpga_readData()
             ui->label_WriteER1->setText("WER1="+QString::number(i_write_error_1,10));
         }
     }
+
+    if ((type_data == FPGA_E2_WRITE)
+            |(type_data == FPGA_E1_WRITE)){
+        if (raw_data->data_avarible)
+        {
+            QImage img(128, 256, QImage::Format_RGB888);
+            img.fill(QColor(Qt::white).rgb());
+            raw_data->convert_edata_to_image(&img,raw_data->sram_data);
+            ui->label_bitmap->setPixmap(QPixmap::fromImage(img));
+            int i_refeshtime = ui->lineEdit_refeshtime->text().toUInt(&ok,10);
+            int i_repeatwrite = ui->lineEdit_write_times->text().toUInt(&ok,10);
+            bool b_original = true;
+            if ((i_refeshtime+i_repeatwrite)>0) b_original = false;
+            else b_original = true;
+
+            for (int x = 0; x < 16; x++) {
+                for (int y = 0; y < 256; y++) //,
+                {
+                    if ((y%2==1)){
+                        data_pt = ui->lineEdit_DUT_data1->text().toUInt(&ok,16);
+                        cdata_pt = (char)data_pt;
+                    } else {
+                        data_pt = ui->lineEdit_DUT_data2->text().toUInt(&ok,16);
+                        cdata_pt = (char)data_pt;
+                    }
+                    if ((x*256+y)<=(raw_data->sram_data->size()-1)){
+                        cdata_org = raw_data->sram_data->at(x*256+y);
+
+                    }
+                    else {
+                        cdata_org = 0;
+                    }
+                    cmask = 0x01;
+                    for (int b = 0; b<8;b++)
+                    {
+                        if ((cdata_org&cmask)==cmask){
+                             b_array_rb[8*x+7-b][y] = true;
+                        }
+                        else{
+                            b_array_rb[8*x+7-b][y] = false;
+                        }
+                        if ((cdata_pt&cmask)==cmask){
+                            b_array_pt[8*x+b][y] = true;
+                        } else {
+                            b_array_pt[8*x+b][y] = false;
+                        }
+                        cmask = cmask<<1;
+                    }
+                }
+            }
+
+
+            // calculate error rate
+            i_write_error_0 = 0;
+            i_write_error_1 = 0;
+            i_retension_error_0 = 0;
+            i_retension_error_1 = 0;
+            if (b_original){
+                i_write_error_0 = 0;
+                i_write_error_1 = 0;
+                for (int x = 0; x < 128; x++) {
+                    for (int y = 0; y < 255; y++) // except the test SA row (255th)
+                    {
+                        if (b_array_rb[x][y]!=b_array_pt[x][y]){
+                            if (b_array_pt[x][y]==0){
+                                i_write_error_0 +=1;
+                            }else {
+                                i_write_error_1 +=1;
+                            }
+                        }
+                    }
+                }
+            } else {
+                i_retension_error_0 = 0;
+                i_retension_error_1 = 0;
+                for (int x = 0; x < 128; x++) {
+                    for (int y = 0; y < 255; y++) // do not compare the 255th row
+                    {
+                        if (b_array_pt[x][y]!=b_array_rb[x][y]){
+                            if (b_array_pt[x][y]==0){
+                                i_retension_error_0 +=1;
+                            }else {
+                                i_retension_error_1 +=1;
+                            }
+                        }
+                    }
+                }
+            }
+            // show error number
+            ui->label_RetensionER0->setText("TER0="+QString::number(i_retension_error_0,10));
+            ui->label_RetensionER1->setText("TER1="+QString::number(i_retension_error_1,10));
+            ui->label_WriteER0->setText("WER0="+QString::number(i_write_error_0,10));
+            ui->label_WriteER1->setText("WER1="+QString::number(i_write_error_1,10));
+        }
+    }
+
+
 }
 
 void MainWindow::uart_fpga_writeData(const QByteArray &data)

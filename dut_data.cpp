@@ -72,7 +72,7 @@ void dut_data::convert_data_to_image(QImage* img, QByteArray* data)
             {
                 if ((cdata&cmask)==cmask)
                 {
-                    img->setPixel(16*b+x, 255-y, qRgb(255, 255, 255));
+                    img->setPixel(16*b+x, 255-y, qRgb(254, 254, 254));
                 }
                 else
                 {
@@ -80,6 +80,46 @@ void dut_data::convert_data_to_image(QImage* img, QByteArray* data)
                         img->setPixel(16*b+x, 255-y, qRgb(50, 240, 10));
                     } else {
                         img->setPixel(16*b+x, 255-y, qRgb(0, 0, 0));
+                    }
+
+                }
+                cmask = cmask<<1;
+            }
+        }
+    }
+
+}
+
+void dut_data::convert_edata_to_image(QImage* img, QByteArray* data)
+{
+    char cdata,cmask;
+    bool color = false;
+    // data array
+    for (int x = 0; x < 16; x++)
+    {
+        for (int y = 0; y < 256; y++)
+        {
+            if ((x*256+y)<=(data->length()-1)){
+                cdata = data->at(x*256+y);
+                color = false;
+            }
+            else {
+                cdata = 0;
+                color = true;
+            }
+            cmask = 0x01;
+            for (int b = 0; b<8;b++)
+            {
+                if ((cdata&cmask)==cmask)
+                {
+                    img->setPixel(16*(7-b)+x, 255-y, qRgb(254, 254, 254));
+                }
+                else
+                {
+                    if (color){
+                        img->setPixel(16*(7-b)+x, 255-y, qRgb(50, 240, 10));
+                    } else {
+                        img->setPixel(16*(7-b)+x, 255-y, qRgb(0, 0, 0));
                     }
 
                 }

@@ -25,6 +25,7 @@ public:
 
     bool data_avarible;
     void convert_data_to_image(QImage* img, QByteArray* data);
+    void convert_edata_to_image(QImage* img, QByteArray* data);
     char data_classify();
 
        QByteArray *sram_data;
